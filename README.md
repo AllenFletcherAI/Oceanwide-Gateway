@@ -11,7 +11,6 @@
 
 Engineered for operational seaport and customs processing at **[OLE Oceanwide Logistics Europe GmbH](https://www.oceanwidelogistics.net/)** & **[Oceanwide Logistics Global Network (OLGN)](https://www.oceanwidelogistics.net/)**  
 *Süderstraße 77, 20097 Hamburg, Germany · Commercial Register: Amtsgericht Hamburg, HRB 122583*  
-*Managing Directors (Geschäftsführung): Peter Czajkowski (CEO) & Christoph Braß*
 
 ---
 
