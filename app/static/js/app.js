@@ -446,7 +446,7 @@ const translations = {
     pipeline_status_proc: "WIRD GEPRÜFT",
     pipeline_status_idle: "BEREIT",
     
-    // Onboarding & Setup Concierge
+    // Initial System Setup
     onboarding_badge: "OCEANWIDE GATEWAY - SYSTEM-EINRICHTUNG",
     onboarding_title_step1: "1. ARBEITSSPRACHE WÄHLEN | LANGUAGE SELECTION",
     onboarding_title_step2: "2. ERSCHEINUNGSBILD | THEME",
@@ -903,7 +903,7 @@ const translations = {
     quar_th_reason: "Root Cause & Delta",
     quar_th_fees: "Risk / Day",
     quar_th_status: "Status",
-    quar_th_actions: "Operations Playbook",
+    quar_th_actions: "Operational Actions",
     quar_btn_inspect: "Inspect",
     quar_btn_claim: "ADSp Claim",
     quar_btn_request: "Request Docs",
@@ -1012,7 +1012,7 @@ const translations = {
     pipeline_status_proc: "PROCESSING",
     pipeline_status_idle: "STANDBY",
     
-    // Onboarding & Setup Concierge
+    // Initial System Setup
     onboarding_badge: "OCEANWIDE GATEWAY - SYSTEM SETUP",
     onboarding_title_step1: "1. LANGUAGE SELECTION",
     onboarding_title_step2: "2. DISPLAY THEME",
@@ -3429,7 +3429,7 @@ function renderReconciliationResult(data) {
   };
 
   const cellTranslate = (val) => {
-    if (!val || val === '—' || val === '-') return '-';
+    if (!val || val === '-') return '-';
     let s = String(val).trim();
     if (currentLang === 'en') {
       s = s.replace(/- \(Frachtbrief unbewertet\)/g, '- (Waybill unvalued)');
@@ -3588,7 +3588,7 @@ function renderReconciliationResult(data) {
       </div>
     </div>
 
-    <!-- Carrier & Shipper Discrepancy Memo Playbook -->
+    <!-- Carrier & Shipper Discrepancy Memo Actions -->
     ${memoContent ? `
       <div class="stage-card p-4 border border-[#1E293B] bg-[#0A0F1D] rounded-2xl space-y-3 shadow-sm">
         <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E293B] pb-2.5">
@@ -5413,7 +5413,7 @@ function renderQuarantineTable() {
         <span class="px-2 py-0.5 rounded text-[10px] bg-red-950 text-red-400 border border-red-800 font-bold">HOLD</span>
       </td>
 
-      <!-- Column 7: Operational Action Playbook -->
+      <!-- Column 7: Operational Actions -->
       <td class="py-2.5 px-3 text-right">
         <div class="flex items-center justify-end gap-1.5 whitespace-nowrap">
           <button onclick="inspectQuarShipment('${r.shipment_ref}')" title="${t('quar_btn_inspect')}" class="w-7 h-7 rounded-lg bg-[#131D31] hover:bg-[#1E2D4E] border border-[#1E293B] text-blue-400 hover:text-blue-300 flex items-center justify-center transition cursor-pointer shadow-sm">
@@ -6543,7 +6543,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 // ==========================================
-// WELCOME & SETUP CONCIERGE (3-STEP ONBOARDING)
+// INITIAL WORKSPACE CONFIGURATION (3-STEP SETUP)
 // ==========================================
 let currentWelcomeStep = 1;
 let toolbarPointerTimeout = null;
@@ -6554,7 +6554,7 @@ function checkInitialOnboarding() {
   if (isSuppressedSession || isCompleted) {
     return;
   }
-  // If not completed or suppressed, warmly present the concierge setup
+  // If not completed or suppressed, display initial setup modal
   setTimeout(() => {
     openWelcomeSetupModal(1);
   }, 350);
@@ -6728,7 +6728,7 @@ function hideToolbarPointer() {
   }
 }
 
-// Global Keyboard Shortcuts for 50+ operators (F1, ?, Escape)
+// Global Keyboard Shortcuts (F1, ?, Escape)
 window.addEventListener('keydown', (e) => {
   // F1 or ? for Help (if not typing in an input/textarea)
   if (e.key === 'F1' || (e.key === '?' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName))) {

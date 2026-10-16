@@ -9,7 +9,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Containerized-0284c7?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Compliance](https://img.shields.io/badge/Standard-ADSp%202017%20%7C%20ISO%206346%20%7C%20GoBD-e11d48?style=flat-square)](https://www.spediteure.de/adsp/)
 
-Calibrated for **[OLE Oceanwide Logistics Europe GmbH](https://www.oceanwidelogistics.net/)** & **[Oceanwide Logistics Global Network (OLGN)](https://www.oceanwidelogistics.net/)**  
+Engineered for operational seaport and customs processing at **[OLE Oceanwide Logistics Europe GmbH](https://www.oceanwidelogistics.net/)** & **[Oceanwide Logistics Global Network (OLGN)](https://www.oceanwidelogistics.net/)**  
 *Süderstraße 77, 20097 Hamburg, Germany · Commercial Register: Amtsgericht Hamburg, HRB 122583*  
 *Managing Directors (Geschäftsführung): Peter Czajkowski (CEO) & Christoph Braß*
 
@@ -23,13 +23,13 @@ Calibrated for **[OLE Oceanwide Logistics Europe GmbH](https://www.oceanwidelogi
 
 ## 1. Overview & Operational Scope
 
-**Oceanwide Gateway (OLE Gateway)** is an enterprise document ingestion, 3-Way Match cross-reconciliation, and customs compliance validation service specifically calibrated for **OLE Oceanwide Logistics Europe GmbH** in Hamburg.
+**Oceanwide Gateway (OLE Gateway)** is an enterprise document ingestion, 3-Way Match cross-reconciliation, and customs compliance validation service tailored specifically for **OLE Oceanwide Logistics Europe GmbH** seaport operations in Hamburg.
 
-Operating at the heart of Germany's primary maritime hub (Port of Hamburg — HHLA Burchardkai CTB, Altenwerder CTA, Tollerort CTT, and Eurogate CTH), alongside gateways in Rotterdam, Antwerp, and Bremerhaven, the gateway ingests multi-format freight documents (Ocean Bills of Lading, Commercial Invoices, Packing Lists, and Air Waybills), extracts high-dimensional logistics entities, and validates them against strict maritime, tax, and customs standards before ERP staging and German **ATLAS 9.1** customs submission.
+Operating at the heart of Germany's primary maritime hub (Port of Hamburg: HHLA Burchardkai CTB, Altenwerder CTA, Tollerort CTT, and Eurogate CTH), alongside gateways in Rotterdam, Antwerp, and Bremerhaven, the gateway ingests multi-format freight documents (Ocean Bills of Lading, Commercial Invoices, Packing Lists, and Air Waybills), extracts and validates critical transport document data (B/L numbers, ISO container check digits, gross/tare/net weights, Colli counts, Incoterms 2020, and commercial invoice line items) against maritime and customs standards before ERP staging and German **ATLAS 9.1** customs submission.
 
 ### Operational Objectives
-1. **Container Gate-In & Demurrage Mitigation:** Performs instant ISO 6346 Modulo-11 check digit verification and 50-kg VGM weight tolerance validation (§ 412 HGB / SOLAS VGM), eliminating gate-in rejections and terminal detention fines (€150–€350/day/container).
-2. **Autonomous 3-Way Match Reconciliation:** Cross-audits the transport document triad (Ocean B/L vs. Commercial Invoice vs. Packing List), verifying line items, container serials, Colli counts, gross/net weights, Incoterms, and financial totals across all three documents.
+1. **Container Gate-In & Demurrage Mitigation:** Performs instant ISO 6346 Modulo-11 check digit verification and 50-kg VGM weight tolerance validation (§ 412 HGB / SOLAS VGM), eliminating gate-in rejections and terminal detention fines (€150 to €350 per day/container).
+2. **Automated 3-Way Match Reconciliation:** Cross-audits the transport document triad (Ocean B/L vs. Commercial Invoice vs. Packing List), verifying line items, container serials, Colli counts, gross/net weights, Incoterms, and financial totals across all three documents.
 3. **Legal Claim Notice Generation (ADSp 2017):** Automatically formulates legally binding German carrier discrepancy memos under ADSp 2017 § 19 and § 412 HGB when weight discrepancies or equipment mismatches are identified.
 4. **Decoupled Enterprise TMS/ERP Staging:** Generates parameterized Transact-SQL (T-SQL) DDL schemas and scripts for `[dbo].[OLE_Staging_Shipments]` and `[dbo].[OLE_Staging_ReconciliationTriad]`, accompanied by a native C# / .NET 8 integration driver.
 5. **GoBD Cryptographic Audit Trail:** Binds every processed shipment and operator supervisor override to an immutable SHA-256 ledger adhering to German tax and archiving requirements (§ 146, 147 AO / GoBD).
@@ -41,11 +41,11 @@ Operating at the heart of Germany's primary maritime hub (Port of Hamburg — HH
 ```mermaid
 flowchart TD
     subgraph INTAKE["1. Document Ingestion & Vision Extraction"]
-        A["Ocean B/L (HHLA/Port)<br/>Commercial Invoice<br/>Packing List"] --> B["Multimodal Vision Extraction<br/>Gemini API Engine"]
+        A["Ocean B/L (HHLA/Port)<br/>Commercial Invoice<br/>Packing List"] --> B["Freight Document Vision & OCR<br/>Extraction Pipeline"]
         B --> C["Structured Logistics Payload<br/>(ISO 6346, Weights, Incoterms, Currency)"]
     end
 
-    subgraph VALIDATION["2. Deterministic Verification Pipeline"]
+    subgraph VALIDATION["2. Seaport Compliance & Customs Validation Engine"]
         C --> D{"Compliance Rules"}
         D --> D1["ISO 6346 Modulo-11 Checksum"]
         D --> D2["Weight Consistency (Gross >= Net, 50kg VGM)"]
@@ -124,8 +124,8 @@ Binds every document extraction, deterministic audit result, and supervisor over
 
 ### Step 1: Clone Repository
 ```bash
-git clone https://github.com/AllenFletcherAI/Ole-Gateway.git
-cd Ole-Gateway
+git clone https://github.com/AllenFletcherAI/Oceanwide-Gateway.git
+cd Oceanwide-Gateway
 ```
 
 ### Step 2: Install Dependencies
@@ -260,5 +260,5 @@ public class OceanwideGatewayClient : IOceanwideGatewayClient
 
 ## 9. License
 
-Proprietary software calibrated for **OLE Oceanwide Logistics Europe GmbH** & **Oceanwide Logistics Global Network (OLGN)**.  
+Proprietary software engineered for **OLE Oceanwide Logistics Europe GmbH** & **Oceanwide Logistics Global Network (OLGN)**.  
 All rights reserved © 2026.

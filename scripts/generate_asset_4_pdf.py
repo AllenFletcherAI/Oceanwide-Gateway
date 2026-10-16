@@ -787,12 +787,12 @@ curl -X POST "https://oceanwide-gateway.onrender.com/api/v1/reconcile-live" \
       </thead>
       <tbody>
         <tr>
-          <td><strong>Tag 1 (0–24h): Bereitstellung</strong></td>
+          <td><strong>Tag 1 (0-24h): Bereitstellung</strong></td>
           <td>Ausführung des T-SQL Staging-Skripts auf der MS-SQL Testdatenbank. Bereitstellung der API-Schlüssel & Gateway-Endpunkte. Zero Handholding für OLE IT.</td>
           <td>IT-Leitung (OLE)<br>Allen Fletcher</td>
         </tr>
         <tr>
-          <td><strong>Tag 2 (24–48h): Shadow-Betrieb</strong></td>
+          <td><strong>Tag 2 (24-48h): Shadow-Betrieb</strong></td>
           <td>Einbindung der <code>OceanwideGatewayClient.cs</code> in den bestehenden Dispositions-Workflow. Parallele Schattenprüfung von 50 echten Sendungsdossiers ohne ERP-Schreibzugriff.</td>
           <td>Leitender Seefracht-Disponent<br>Allen Fletcher</td>
         </tr>
