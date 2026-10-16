@@ -40,8 +40,8 @@ from app.services.database import (
 init_db()
 
 app = FastAPI(
-    title="RedLine Gateway",
-    description="Freight document ingestion and customs compliance validation service for Red Line Internationale Spedition GmbH / mw1group",
+    title="Oceanwide Gateway",
+    description="Autonomous freight document ingestion and customs compliance validation service for OLE Oceanwide Logistics Europe GmbH (Hamburg)",
     version="1.0.0"
 )
 
@@ -71,7 +71,9 @@ app.mount("/static", StaticFiles(directory=static_dir), name="static")
 def health_check():
     return {
         "status": "online",
-        "service": "RedLine Gateway",
+        "service": settings.GATEWAY_NAME,
+        "company": settings.COMPANY_NAME,
+        "partner": settings.PARTNER_NAME,
         "version": "1.0.0",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
     }
@@ -88,7 +90,7 @@ def read_root():
                 "Expires": "0"
             }
         )
-    return {"message": "RedLine Gateway API Online", "docs": "/docs"}
+    return {"message": "Oceanwide Gateway API Online", "docs": "/docs"}
 
 @app.api_route("/favicon.ico", methods=["GET", "HEAD"])
 def favicon():
@@ -104,7 +106,7 @@ async def process_document(file: UploadFile = File(...)):
     - Stage 1: INGEST (SHA-256 Digest, File Persistence, MIME validation)
     - Stage 2: EXTRACT (Multimodal Vision Entity Extraction)
     - Stage 3: AUDIT (Deterministic Verification: ISO 6346, Weight Consistency, Line-Item Math)
-    - Stage 4: ROUTE (Clean -> myscm Staging, Exception -> Demurrage Quarantine)
+    - Stage 4: ROUTE (Clean -> OLE TMS Staging, Exception -> Demurrage Quarantine)
     - Stage 5: DISPATCH (Transact-SQL Generation for MS-SQL Server)
     """
     contents = await file.read()
@@ -136,7 +138,7 @@ async def process_document(file: UploadFile = File(...)):
     audit_report = run_deterministic_audit(extracted_doc)
     
     # Stage 4 & 5: Route & Dispatch (T-SQL Bridge for MS-SQL Server)
-    shipment_ref = f"RL-2026-EXP-{str(uuid.uuid4())[:8].upper()}"
+    shipment_ref = f"OLE-2026-EXP-{str(uuid.uuid4())[:8].upper()}"
     sql_insert = generate_mssql_insert(shipment_ref, extracted_doc, audit_report)
     
     # Record into Persistent Compliance Ledger
@@ -157,6 +159,18 @@ async def process_document(file: UploadFile = File(...)):
         audit_report=audit_report.model_dump()
     )
 
+    staging_dict = {
+        "ShipmentRef": shipment_ref,
+        "ContainerNumber": extracted_doc.container_number,
+        "GrossWeightKg": extracted_doc.gross_weight_kg,
+        "NetWeightKg": extracted_doc.net_weight_kg,
+        "TotalAmount": extracted_doc.total_amount,
+        "Currency": extracted_doc.currency,
+        "Incoterm": extracted_doc.incoterm,
+        "AuditStatus": audit_report.status,
+        "AtlasReady": audit_report.atlas_ready
+    }
+
     return ProcessedShipmentResponse(
         shipment_id=shipment_ref,
         sha256_hash=sha256_hash,
@@ -167,17 +181,7 @@ async def process_document(file: UploadFile = File(...)):
         audit_report=audit_report,
         mssql_schema_ready=True,
         mssql_insert_statement=sql_insert,
-        myscm_staging_payload={
-            "ShipmentRef": shipment_ref,
-            "ContainerNumber": extracted_doc.container_number,
-            "GrossWeightKg": extracted_doc.gross_weight_kg,
-            "NetWeightKg": extracted_doc.net_weight_kg,
-            "TotalAmount": extracted_doc.total_amount,
-            "Currency": extracted_doc.currency,
-            "Incoterm": extracted_doc.incoterm,
-            "AuditStatus": audit_report.status,
-            "AtlasReady": audit_report.atlas_ready
-        }
+        ole_staging_payload=staging_dict
     )
 
 # Canonical sample extraction cache to ensure instant, reliable loading without repeated external API quota throttling
@@ -198,7 +202,7 @@ def get_or_load_sample_extraction(sample_name: str, bytes_data: bytes) -> Extrac
     if target_type:
         try:
             import sqlite3, json
-            conn = sqlite3.connect("redline_gateway.db")
+            conn = sqlite3.connect("oceanwide_gateway.db")
             c = conn.cursor()
             c.execute("SELECT extracted_json FROM processed_shipments WHERE document_type = ? AND extracted_json IS NOT NULL ORDER BY id DESC LIMIT 1", (target_type,))
             row = c.fetchone()
@@ -243,7 +247,7 @@ def process_preloaded_sample(sample_name: str):
 
     extracted_doc = get_or_load_sample_extraction(sample_name, bytes_data)
     audit_report = run_deterministic_audit(extracted_doc)
-    shipment_ref = f"RL-2026-EXP-{str(uuid.uuid4())[:8].upper()}"
+    shipment_ref = f"OLE-2026-EXP-{str(uuid.uuid4())[:8].upper()}"
     sql_insert = generate_mssql_insert(shipment_ref, extracted_doc, audit_report)
 
     save_shipment(
@@ -263,6 +267,18 @@ def process_preloaded_sample(sample_name: str):
         audit_report=audit_report.model_dump()
     )
 
+    staging_dict = {
+        "ShipmentRef": shipment_ref,
+        "ContainerNumber": extracted_doc.container_number,
+        "GrossWeightKg": extracted_doc.gross_weight_kg,
+        "NetWeightKg": extracted_doc.net_weight_kg,
+        "TotalAmount": extracted_doc.total_amount,
+        "Currency": extracted_doc.currency,
+        "Incoterm": extracted_doc.incoterm,
+        "AuditStatus": audit_report.status,
+        "AtlasReady": audit_report.atlas_ready
+    }
+
     return ProcessedShipmentResponse(
         shipment_id=shipment_ref,
         sha256_hash=sha256_hash,
@@ -273,17 +289,7 @@ def process_preloaded_sample(sample_name: str):
         audit_report=audit_report,
         mssql_schema_ready=True,
         mssql_insert_statement=sql_insert,
-        myscm_staging_payload={
-            "ShipmentRef": shipment_ref,
-            "ContainerNumber": extracted_doc.container_number,
-            "GrossWeightKg": extracted_doc.gross_weight_kg,
-            "NetWeightKg": extracted_doc.net_weight_kg,
-            "TotalAmount": extracted_doc.total_amount,
-            "Currency": extracted_doc.currency,
-            "Incoterm": extracted_doc.incoterm,
-            "AuditStatus": audit_report.status,
-            "AtlasReady": audit_report.atlas_ready
-        }
+        ole_staging_payload=staging_dict
     )
 
 @app.post("/api/v1/reconcile-simulation", response_model=ThreeWayReconciliationResult)
@@ -428,7 +434,7 @@ async def reconcile_live_documents(
 
     result = reconcile_documents(inv_doc, bol_doc, pl_doc, preview_urls=preview_urls, lang=lang)
 
-    shipment_ref = f"RL-REC-{str(uuid.uuid4())[:8].upper()}"
+    shipment_ref = f"OLE-REC-{str(uuid.uuid4())[:8].upper()}"
     container_no = (bol_doc.container_number if bol_doc else None) or (pl_doc.container_number if pl_doc else None)
     shipper = (bol_doc.shipper if bol_doc else None) or (inv_doc.shipper if inv_doc else None)
     consignee = (bol_doc.consignee if bol_doc else None) or (inv_doc.consignee if inv_doc else None)
@@ -521,7 +527,7 @@ def get_integration_health():
         "gateway": "FastAPI 0.115",
         "port": settings.PORT,
         "database": "MS-SQL Server 2022 Compatible",
-        "bridge": "mw1 myscm Active Staging",
+        "bridge": "OLE Enterprise TMS Active Staging Bridge",
         "latency_ms": 14,
         "environment": os.getenv("ENVIRONMENT", "production"),
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()

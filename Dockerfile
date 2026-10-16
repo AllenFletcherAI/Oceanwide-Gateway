@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
-# RedLine Gateway - Freight Ingestion & Customs Compliance Gateway
-# Red Line Internationale Spedition GmbH & mw1group
+# Oceanwide Gateway - Freight Ingestion & Customs Compliance Gateway
+# OLE Oceanwide Logistics Europe GmbH & OLGN
 # -----------------------------------------------------------------------------
 FROM python:3.11-slim
 

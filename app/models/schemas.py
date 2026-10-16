@@ -82,4 +82,4 @@ class ProcessedShipmentResponse(BaseModel):
     audit_report: AuditReport
     mssql_schema_ready: bool
     mssql_insert_statement: str
-    myscm_staging_payload: Dict[str, Any]
+    ole_staging_payload: Optional[Dict[str, Any]] = None

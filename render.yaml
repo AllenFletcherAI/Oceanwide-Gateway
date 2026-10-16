@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: oceanwide-gateway
+    env: python
+    region: frankfurt
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: COMPANY_NAME
+        value: "OLE Oceanwide Logistics Europe GmbH"
+      - key: PARTNER_NAME
+        value: "Oceanwide Logistics Global Network (OLGN)"
+      - key: GATEWAY_NAME
+        value: "Oceanwide Gateway"
+      - key: DATABASE_URL
+        value: "sqlite:///./oceanwide_gateway.db"
+      - key: GEMINI_API_KEY
+        sync: false

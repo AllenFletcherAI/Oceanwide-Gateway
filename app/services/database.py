@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 
-DB_PATH = "redline_gateway.db"
+DB_PATH = "oceanwide_gateway.db"
 
 def init_db():
     conn = sqlite3.connect(DB_PATH)

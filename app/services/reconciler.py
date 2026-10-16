@@ -165,15 +165,16 @@ def reconcile_documents(
     ref_container = (bol.container_number if bol else None) or (packing_list.container_number if packing_list else None) or "SHIPMENT-REF"
     if is_perfect:
         if is_en:
-            memo_text = f"REDLINE GATEWAY - 3-WAY RECONCILIATION VERIFIED\nContainer: {ref_container}\nAll freight documents match 100%. Pre-cleared for ATLAS 9.1 and mw1 myscm dispatch."
+            memo_text = f"OCEANWIDE GATEWAY - 3-WAY MATCH VERIFIED\nContainer: {ref_container}\nAll freight documents match 100%. Pre-cleared for ATLAS 9.1 and OLE Enterprise TMS dispatch."
         else:
-            memo_text = f"REDLINE GATEWAY - 3-WEGE-ABGLEICH BESTANDEN\nContainer: {ref_container}\nAlle Frachtpapiere stimmen zu 100% überein. Freigegeben für ATLAS 9.1 und mw1 myscm."
+            memo_text = f"OCEANWIDE GATEWAY - 3-WEGE-ABGLEICH BESTANDEN\nContainer: {ref_container}\nAlle Frachtpapiere stimmen zu 100% überein. Freigegeben für ATLAS 9.1 und OLE Enterprise TMS."
     else:
         if is_en:
             memo_text = (
-                f"DISCREPANCY NOTICE (Red Line / mw1group)\n"
+                f"DISCREPANCY NOTICE (OLE Oceanwide Logistics Europe GmbH / OLGN)\n"
                 f"Reference: Container {ref_container} - 3-Way Cross-Audit\n"
-                f"Status: QUARANTINE HOLD (Demurrage risk averted: {demurrage_prevented:,.2f} EUR)\n\n"
+                f"Status: QUARANTINE HOLD (Demurrage risk averted: {demurrage_prevented:,.2f} EUR)\n"
+                f"Legal Basis: ADSp 2017 Section 19 & German Commercial Code § 412 HGB\n\n"
                 f"Identified discrepancies between freight documents:\n" +
                 "\n".join(f"  • {d}" for d in discrepancies) +
                 f"\n\nImmediate action required:\n"
@@ -181,9 +182,10 @@ def reconcile_documents(
             )
         else:
             memo_text = (
-                f"SPEDITIONS-BEANSTANDUNG (Red Line / mw1group)\n"
+                f"SPEDITIONS-BEANSTANDUNG (OLE Oceanwide Logistics Europe GmbH / OLGN)\n"
                 f"Bezug: Container {ref_container} - Transportabgleich\n"
-                f"Status: QUARANTÄNE-HOLD (Standgeld-Risiko abgewendet: {demurrage_prevented:,.2f} EUR)\n\n"
+                f"Status: QUARANTÄNE-HOLD (Standgeld-Risiko abgewendet: {demurrage_prevented:,.2f} EUR)\n"
+                f"Rechtsgrundlage: ADSp 2017 Ziffer 19 & Handelsgesetzbuch § 412 HGB\n\n"
                 f"Festgestellte Abweichungen zwischen Frachtpapieren:\n" +
                 "\n".join(f"  • {d}" for d in discrepancies) +
                 f"\n\nSofortmaßnahme erforderlich:\n"
@@ -203,14 +205,14 @@ def reconcile_documents(
             "invoice": f"Value: {inv_val_str} | {invoice.incoterm or '-'}" if invoice else None,
             "packing": f"Packages: {packing_list.total_packages or '-'} | {pack_wt_str}" if packing_list else None
         }
-        action_req = "Auto-dispatch approved for ATLAS filing and mw1 myscm" if is_perfect else "Quarantine Hold: Issue discrepancy notice to shipping agent"
+        action_req = "Auto-dispatch approved for ATLAS filing and OLE Enterprise TMS" if is_perfect else "Quarantine Hold: Issue discrepancy notice to shipping agent"
     else:
         summary_chips = {
             "bol": f"Container: {bol.container_number or '-'} | {bol_wt_str}" if bol else None,
             "invoice": f"Wert: {inv_val_str} | {invoice.incoterm or '-'}" if invoice else None,
             "packing": f"Colli: {packing_list.total_packages or '-'} | {pack_wt_str}" if packing_list else None
         }
-        action_req = "Freigabe für ATLAS-Zollanmeldung und mw1 myscm erteilt" if is_perfect else "Quarantäne-Hold: Reederei-Reklamation veranlassen"
+        action_req = "Freigabe für ATLAS-Zollanmeldung und OLE Enterprise TMS erteilt" if is_perfect else "Quarantäne-Hold: Reederei-Reklamation veranlassen"
 
     return ThreeWayReconciliationResult(
         overall_status="PERFECT_MATCH" if is_perfect else "DISCREPANCY_FLAGGED",

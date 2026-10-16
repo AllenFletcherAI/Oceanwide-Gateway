@@ -1,4 +1,4 @@
-// RedLine Gateway Client Logic (Industrial 5-Stage Pipeline)
+// Oceanwide Gateway Client Logic (OLE Oceanwide Logistics Europe GmbH - Industrial 5-Stage Pipeline)
 // Multi-Language (DE/EN) & Theme Toggle (Dark/Light)
 
 let currentPreviewFile = null;
@@ -12,10 +12,10 @@ let currentZoom = 1.0;
 // ==========================================
 const translations = {
   de: {
-    doc_title: "RedLine Gateway | Dokumentenprüfung & Zoll-Vorabfertigung",
+    doc_title: "Oceanwide Gateway | Dokumentenprüfung & Zoll-Vorabfertigung",
     badge_pipeline: "5-Stage Pipeline",
     badge_modalities: "See · Luft · Land · ATLAS",
-    badge_myscm: "mw1 myscm Live Bridge",
+    badge_ole_bridge: "OLE Active TMS Bridge",
     header_hermann: "C# / MS-SQL Gateway",
     tab_pipeline: "Document Audit",
     tab_reconcile: "3-Way Match",
@@ -99,7 +99,7 @@ const translations = {
     step_audit_title: "3. Regel-Audit",
     step_audit_sub: "ISO-6346 Check",
     step_sql_title: "4. T-SQL Staging",
-    step_sql_sub: "mw1 myscm",
+    step_sql_sub: "OLE TMS Staging",
     step_dispatch_title: "5. Freigabe",
     step_dispatch_sub: "ATLAS 9.1",
     stepper_active_operation: "Aktueller Vorgang:",
@@ -110,12 +110,12 @@ const translations = {
     ticker_stage_1: "Dokumenten-Header wird eingelesen und kryptografisch versiegelt...",
     ticker_stage_2: "Optische Muster- und Datenfeldextraktion läuft...",
     ticker_stage_3: "Deterministische ISO-6346 und Freistellungs-Prüfung...",
-    ticker_stage_4: "T-SQL Staging und mw1 myscm Schnittstelle...",
+    ticker_stage_4: "T-SQL Staging und OLE Enterprise TMS Schnittstelle...",
     ticker_stage_5: "GoBD- und ATLAS 9.1 Konformitätsbericht versiegelt...",
     ticker_done: "Prüfbericht erfolgreich versiegelt und freigegeben.",
     calculating_hash: "berechne...",
     telemetry_guide_badge: "Automatische Zoll- & Dokumentenprüfung",
-    telemetry_idle_heading: "So funktioniert das RedLine Gateway",
+    telemetry_idle_heading: "So funktioniert das Oceanwide Gateway",
     telemetry_idle_desc: "In drei Schritten von der Frachturkunde zur fehlerfreien Verzollung und ERP-Übergabe:",
     guide_step1_title: "Schritt 1: Dokument links auswählen oder ablegen",
     guide_step1_desc: "Klicken Sie auf „Dateien auswählen“ oder testen Sie Belege aus See-, Luft- oder Landverkehren.",
@@ -123,7 +123,7 @@ const translations = {
     guide_step2_title: "Schritt 2: Automatische Extraktion & Regel-Audit",
     guide_step2_desc: "Prüft ISO-Container, AWB/CMR-Frachtbriefe, Zolltarifcodes, Gewichte und Incoterms deterministisch, um Verzögerungen und Standgelder zu verhindern.",
     guide_step3_title: "Schritt 3: Freigabe für ATLAS & ERP-Export",
-    guide_step3_desc: "Verifizierte Frachtdaten werden direkt für ATLAS-Zollanmeldungen, Hafensysteme und die mw1 myscm Datenbank bereitgestellt.",
+    guide_step3_desc: "Verifizierte Frachtdaten werden direkt für ATLAS-Zollanmeldungen, Hafensysteme und die OLE Enterprise TMS Datenbank bereitgestellt.",
     readiness_title: "Schnittstellen & System-Kompatibilität",
     readiness_port: "Dakosy (See) & Cargo-XML (Luft)",
     route_idle_title: "Warte auf Dokument",
@@ -159,11 +159,11 @@ const translations = {
     stage3_heading: "Stufe 3: Deterministische Regelprüfung (ATLAS & ADSp)",
     audit_no_checks: "Keine aktiven Prüfungen ausgeführt",
     stage4_heading: "Stufe 4: Operatives Routing & Compliance-Gateway",
-    stage5_heading: "Stufe 5: Generierter T-SQL INSERT-Befehl (mw1 myscm)",
+    stage5_heading: "Stufe 5: Generierter T-SQL INSERT-Befehl (OLE Enterprise TMS)",
     sql_toggle_show: "SQL anzeigen",
     sql_toggle_hide: "SQL ausblenden",
     sql_summary_title: "ERP-Übergabe bereit",
-    sql_summary_desc: "Datensatz für mw1 myscm (MS-SQL Server Tabelle t_myscm_shipment_inbound) vorbereitet.",
+    sql_summary_desc: "Datensatz für OLE Enterprise TMS (MS-SQL Server Tabelle OLE_Staging_Shipments) vorbereitet.",
     btn_copy: "Kopieren",
     sql_placeholder: "-- Transact-SQL wird nach Dokumentenprüfung generiert",
     rec_heading: "Deterministischer 3-Wege-Dokumentenabgleich",
@@ -215,7 +215,7 @@ const translations = {
     rec_interfaces_title: "SYSTEM-STANDARDS & COMPLIANCE-SCHUTZ",
     rec_exec_stage1_title: "Optische Belege-Digitalisierung & Texterfassung",
     rec_exec_stage2_title: "Deterministischer Regel-Audit (§ ADSp 2017)",
-    rec_exec_stage3_title: "Diskrepanz-Matrix & mw1 ERP-Bereitstellung",
+    rec_exec_stage3_title: "Diskrepanz-Matrix & OLE TMS-Bereitstellung",
     rec_risk_clean_title: "STATUS: PERFEKTER ABGLEICH (§ ATLAS 9.1 KONFORM)",
     rec_risk_clean_sub: "Alle Belege stimmen in Gewichten, Containern und Incoterms überein. Kein Standgeld-Risiko.",
     rec_risk_hold_title: "STATUS: STANDGELD-RISIKO ERKANNT (§ ADSp 2017 TOLERANZ ÜBERSCHRITTEN)",
@@ -259,7 +259,7 @@ const translations = {
     rec_step2_guide_title: "Prüfebene 2: Physischer Gewichtsabgleich & ATLAS-Toleranz (B/L ↔ Packing List)",
     rec_step2_guide_desc: "Mathematischer Abgleich von Brutto-/Nettogewichten und Colli mit gesetzlicher Tara-Toleranz von ≤ 50 kg (§ ADSp 2017 & ATLAS 9.1).",
     rec_step3_guide_title: "Schutzebene: Demurrage-Schutz & Automatische Freigabe",
-    rec_step3_guide_desc: "Erkennt Diskrepanzen vor Terminalankunft, verhindert Liegegelder an Seehäfen und stellt verifizierte Daten für ATLAS 9.1 und das mw1 ERP bereit.",
+    rec_step3_guide_desc: "Erkennt Diskrepanzen vor Terminalankunft, verhindert Liegegelder an Seehäfen und stellt verifizierte Daten für ATLAS 9.1 und das OLE Enterprise TMS bereit.",
     rec_pill_adsp: "ADSp 2017 (§ 50 kg Tara)",
     rec_browse_disclaimer: "Auto-Zuordnung via Dateinamen (*B/L*, *Rechnung*, *Packliste*). Neutrale Akten direkt in die Slots laden.",
     rec_toast_combined_inv_pack: "Kombiniertes Dokument: Für Rechnung & Packliste übernommen.",
@@ -285,20 +285,20 @@ const translations = {
     rec_memo_heading: "Speditions-Beanstandung & Reklamations-Memo (ADSp 2017)",
     rec_btn_copy_memo: "Beanstandung als E-Mail kopieren",
     rec_inspect_hint: "Klicken zur Belegprüfung (links im Dossier anzeigen)",
-    it_heading: "Integrations-Architektur (C# / MS-SQL Server & myscm ERP)",
-    it_subheading: "Enterprise-Command-Bridge: Transact-SQL Schemata, C# / .NET 8 Client-Treiber, REST-APIs und Live-Staging-Puffer für die mw1group Systemlandschaft.",
+    it_heading: "Integrations-Architektur (C# / MS-SQL Server & OLE Enterprise TMS)",
+    it_subheading: "Enterprise-Command-Bridge: Transact-SQL Schemata, C# / .NET 8 Client-Treiber, REST-APIs und Live-Staging-Puffer für die OLE Systemlandschaft.",
     it_ping_btn: "Verbindung prüfen",
     it_swagger_btn: "OpenAPI / Swagger Docs",
     it_env_label: "Zielumgebung:",
     it_tab_single_ddl: "1. Einzelbeleg-Staging DDL",
     it_tab_reconcile_ddl: "2. 3-Wege-Abgleich Ledger DDL",
-    it_ddl_badge_single: "T-SQL • Tabelle: dbo.myscm_Staging_Shipments • SHA256 & B/L Index",
+    it_ddl_badge_single: "T-SQL • Tabelle: dbo.OLE_Staging_Shipments • SHA256 & B/L Index",
     it_ddl_badge_reconcile: "T-SQL • 2 Relationale Tabellen: Ledger & Discrepancies • ADSp 2017 Audit",
     it_tab_csharp: "C# / .NET 8",
     it_tab_curl: "cURL / CLI",
     it_tab_python: "Python",
     it_tab_webhook: "Webhooks",
-    it_staging_buffer_title: "myscm Live-Staging-Puffer (MS-SQL Einspeisung)",
+    it_staging_buffer_title: "OLE TMS Live-Staging-Puffer (MS-SQL Einspeisung)",
     it_staging_buffer_desc: "Aktuelle Sendungen im Staging-Format vor dem automatischen Push in MS-SQL Server. Einschließlich 1-Klick T-SQL INSERT Export.",
     it_col_ref: "Referenz / B/L",
     it_col_doctype: "Belegart",
@@ -310,9 +310,9 @@ const translations = {
     it_btn_copy_insert: "T-SQL INSERT kopieren",
     it_btn_copy_insert_done: "Kopiert!",
     it_no_buffer_rows: "Noch keine Sendungen im Staging-Puffer vorhanden.",
-    it_telemetry_gateway: "RedLine Gateway: Online (:8000)",
+    it_telemetry_gateway: "Oceanwide Gateway: Online (:8000)",
     it_telemetry_db: "MS-SQL Server: Bereit (2019/2022)",
-    it_telemetry_bridge: "myscm ERP Bridge: Verbunden",
+    it_telemetry_bridge: "OLE Enterprise TMS Bridge: Verbunden",
     it_telemetry_latency: "Latenz: < 15ms",
     quar_heading: "Quarantäne-Konsole & Demurrage-Schutz",
     quar_subheading: "Leitstand zur lückenlosen Isolierung und Klärung von Frachtdiskrepanzen zur Abwendung von Liegegeldern (Hamburg, Bremerhaven, Frankfurt, Rotterdam).",
@@ -370,7 +370,7 @@ const translations = {
     th_prevented_fees: "Verhinderte Standgelder",
     th_unit_id: "Container / ULD / Fracht-ID",
     ledger_heading: "Revisionssicheres Ingestion-Protokoll",
-    ledger_subheading: "Lückenlose Aufzeichnung aller Dokumentenprüfungen für Zollprüfungen und das mw1 ERP.",
+    ledger_subheading: "Lückenlose Aufzeichnung aller Dokumentenprüfungen für Zollprüfungen und das OLE Enterprise TMS.",
     th_timestamp: "Zeitstempel (UTC)",
     th_reference: "Referenz",
     th_gross_kg: "Brutto (kg)",
@@ -447,7 +447,7 @@ const translations = {
     pipeline_status_idle: "BEREIT",
     
     // Onboarding & Setup Concierge
-    onboarding_badge: "REDLINE GATEWAY - SYSTEM-EINRICHTUNG",
+    onboarding_badge: "OCEANWIDE GATEWAY - SYSTEM-EINRICHTUNG",
     onboarding_title_step1: "1. ARBEITSSPRACHE WÄHLEN | LANGUAGE SELECTION",
     onboarding_title_step2: "2. ERSCHEINUNGSBILD | THEME",
     onboarding_title_step3: "3. SCHNELLEINFÜHRUNG | QUICK TOUR",
@@ -486,7 +486,7 @@ const translations = {
     req_label: "Anforderung:",
     obs_label: "Beobachtet:",
     clean_title: "STUFE 4: FREIGABE ERTEILT (VOLLSTÄNDIG ZOLLKONFORM)",
-    clean_sub: "Alle {n} automatischen Prüfungen bestanden. Bereit für ATLAS Verzollung und Staging in mw1 myscm.",
+    clean_sub: "Alle {n} automatischen Prüfungen bestanden. Bereit für ATLAS Verzollung und Staging in OLE Enterprise TMS.",
     quar_title: "STUFE 4: QUARANTÄNE-STOPP (DEMURRAGE-RISIKO ISOLIERT)",
     quar_sub_default: "Deterministischer Audit fehlgeschlagen. Verhindert Standgelder und Gebühren an Seehäfen, Flugfracht-Hubs und Zollterminals.",
     status_verified_clean: "FREIGEGEBEN",
@@ -506,7 +506,7 @@ const translations = {
     paste_no_image: "Kein Bild in der Zwischenablage gefunden. Kopieren Sie ein Bild mit Druck/Screenshot und drücken Sie Strg+V.",
     paste_shortcut_hint: "Bitte drücken Sie direkt Strg+V auf Ihrer Tastatur, um einen Screenshot einzufügen.",
     ledger_heading: "Revisionssicheres Audit- & Zoll-Ledger (§ 147 AO / GoBD / ATLAS 9.1)",
-    ledger_subheading: "Lückenlose, kryptographisch gesiegelte Dokumentenprüfungshistorie für die deutsche Zollverwaltung, AEO-Sicherheitsaudits und mw1group ERP-Synchronisation.",
+    ledger_subheading: "Lückenlose, kryptographisch gesiegelte Dokumentenprüfungshistorie für die deutsche Zollverwaltung, AEO-Sicherheitsaudits und OLE Enterprise TMS Synchronisation.",
     ledger_kpi_ftr: "First-Time-Right Rate (FTR)",
     ledger_kpi_ftr_sub: "Ohne manuelle Klärung",
     ledger_kpi_weight: "Geprüfte Frachtmasse",
@@ -575,13 +575,13 @@ const translations = {
     ledger_csv_exported: "Audit-Ledger erfolgreich als CSV exportiert!",
     ledger_gobd_exported: "GoBD Audit-Archiv (JSON) erfolgreich exportiert!",
     ledger_copied_hash: "SHA-256 Siegel in Zwischenablage kopiert!",
-    ledger_copied_tsql: "mw1 T-SQL Befehl in Zwischenablage kopiert!"
+    ledger_copied_tsql: "OLE T-SQL Befehl in Zwischenablage kopiert!"
   },
   en: {
-    doc_title: "RedLine Gateway | Document Verification & Customs Pre-Clearance",
+    doc_title: "Oceanwide Gateway | Document Verification & Customs Pre-Clearance",
     badge_pipeline: "5-Stage Pipeline",
     badge_modalities: "Ocean · Air · Road · ATLAS",
-    badge_myscm: "mw1 myscm Live Bridge",
+    badge_ole_bridge: "OLE Active TMS Bridge",
     header_hermann: "C# / MS-SQL Gateway",
     tab_pipeline: "Document Audit",
     tab_reconcile: "3-Way Match",
@@ -665,7 +665,7 @@ const translations = {
     step_audit_title: "3. Rule Audit",
     step_audit_sub: "ISO-6346 Check",
     step_sql_title: "4. T-SQL Staging",
-    step_sql_sub: "mw1 myscm",
+    step_sql_sub: "OLE TMS Staging",
     step_dispatch_title: "5. Dispatch",
     step_dispatch_sub: "ATLAS 9.1 Ready",
     stepper_active_operation: "Current Operation:",
@@ -676,12 +676,12 @@ const translations = {
     ticker_stage_1: "Reading document header and generating cryptographic SHA-256 seal...",
     ticker_stage_2: "Extracting multimodal visual attributes and container metadata...",
     ticker_stage_3: "Running deterministic ISO-6346 checksum and demurrage audit...",
-    ticker_stage_4: "Generating T-SQL staging payload and mw1 myscm database bridge...",
+    ticker_stage_4: "Generating T-SQL staging payload and OLE Enterprise TMS database bridge...",
     ticker_stage_5: "Sealing GoBD & ATLAS 9.1 compliance audit dossier...",
     ticker_done: "Audit dossier verified and cleared for dispatch.",
     calculating_hash: "calculating...",
     telemetry_guide_badge: "Automated Customs & Freight Audit",
-    telemetry_idle_heading: "How RedLine Gateway Works",
+    telemetry_idle_heading: "How Oceanwide Gateway Works",
     telemetry_idle_desc: "Three simple steps from shipping document to error-free customs clearance and ERP staging:",
     guide_step1_title: "Step 1: Choose or drop document on the left",
     guide_step1_desc: "Click \"Browse Files\" on the left or test ready samples across ocean, air, road, or customs documentation.",
@@ -689,7 +689,7 @@ const translations = {
     guide_step2_title: "Step 2: Instant Extraction & Compliance Audit",
     guide_step2_desc: "Validates ISO containers, AWB/CMR consignment notes, HS tariff codes, weights, and Incoterms deterministically to prevent delays and demurrage.",
     guide_step3_title: "Step 3: ATLAS Customs & ERP Clearance",
-    guide_step3_desc: "Verified freight data is staged directly for ATLAS customs declarations, port systems, and the mw1 myscm database.",
+    guide_step3_desc: "Verified freight data is staged directly for ATLAS customs declarations, port systems, and the OLE Enterprise TMS database.",
     readiness_title: "System Interfaces & Compatibility",
     readiness_port: "Dakosy (Ocean) & Cargo-XML (Air)",
     route_idle_title: "Awaiting Document",
@@ -725,11 +725,11 @@ const translations = {
     stage3_heading: "Stage 3: Deterministic Rule Audit (ATLAS & ADSp)",
     audit_no_checks: "No active checks executed",
     stage4_heading: "Stage 4: Operational Routing & Compliance Gateway",
-    stage5_heading: "Stage 5: Generated T-SQL INSERT Statement (mw1 myscm)",
+    stage5_heading: "Stage 5: Generated T-SQL INSERT Statement (OLE Enterprise TMS)",
     sql_toggle_show: "Show SQL",
     sql_toggle_hide: "Hide SQL",
     sql_summary_title: "ERP Staging Ready",
-    sql_summary_desc: "Record prepared for mw1 myscm (MS-SQL Server table t_myscm_shipment_inbound).",
+    sql_summary_desc: "Record prepared for OLE Enterprise TMS (MS-SQL Server table OLE_Staging_Shipments).",
     btn_copy: "Copy",
     sql_placeholder: "-- Transact-SQL will be generated after document audit",
     rec_heading: "Deterministic 3-Way Document Reconciliation",
@@ -781,7 +781,7 @@ const translations = {
     rec_interfaces_title: "SYSTEM INTERFACES & COMPLIANCE STANDARDS",
     rec_exec_stage1_title: "Document Digitalization & Key-Value Parsing",
     rec_exec_stage2_title: "Deterministic Rule Audit (§ ADSp 2017)",
-    rec_exec_stage3_title: "Discrepancy Matrix & mw1 ERP Staging",
+    rec_exec_stage3_title: "Discrepancy Matrix & OLE TMS Staging",
     rec_risk_clean_title: "STATUS: 100% MATCH VERIFIED (§ ATLAS 9.1 COMPLIANT)",
     rec_risk_clean_sub: "All documents match across weights, containers, and Incoterms. Zero demurrage risk.",
     rec_risk_hold_title: "STATUS: DEMURRAGE RISK DETECTED (§ ADSp 2017 TOLERANCE EXCEEDED)",
@@ -825,7 +825,7 @@ const translations = {
     rec_step2_guide_title: "Audit Layer 2: Physical Weight Reconciliation & ATLAS Tolerance (B/L ↔ Packing List)",
     rec_step2_guide_desc: "Deterministic cross-audit of gross/net weights and packages with statutory tare tolerance of ≤ 50 kg (§ ADSp 2017 & ATLAS 9.1).",
     rec_step3_guide_title: "Compliance Layer: Demurrage Defense & Automated Clearance",
-    rec_step3_guide_desc: "Identifies discrepancies prior to terminal arrival, eliminates port demurrage fees, and generates verified data for ATLAS 9.1 and the mw1 ERP.",
+    rec_step3_guide_desc: "Identifies discrepancies prior to terminal arrival, eliminates port demurrage fees, and generates verified data for ATLAS 9.1 and the OLE Enterprise TMS.",
     rec_pill_adsp: "ADSp 2017 (§ 50 kg Tare)",
     rec_browse_disclaimer: "Auto-sorting routes by filename (*B/L*, *Invoice*, *Packing*). Generic or combined files can be uploaded directly to individual slots.",
     rec_toast_combined_inv_pack: "Combined Document: Assigned to Commercial Invoice & Packing List.",
@@ -851,20 +851,20 @@ const translations = {
     rec_memo_heading: "Carrier Discrepancy & Claim Memo (ADSp 2017)",
     rec_btn_copy_memo: "Copy Claim Notice as Email Draft",
     rec_inspect_hint: "Click to inspect document",
-    it_heading: "Integration Architecture (C# / MS-SQL Server & myscm ERP)",
-    it_subheading: "Enterprise Command Bridge: Transact-SQL schemas, C# / .NET 8 client drivers, REST APIs, and live staging buffer for the mw1group infrastructure.",
-    it_ping_btn: "Ping mw1 Bridge",
+    it_heading: "Integration Architecture (C# / MS-SQL Server & OLE Enterprise TMS)",
+    it_subheading: "Enterprise Command Bridge: Transact-SQL schemas, C# / .NET 8 client drivers, REST APIs, and live staging buffer for the OLE infrastructure.",
+    it_ping_btn: "Ping OLE Bridge",
     it_swagger_btn: "OpenAPI / Swagger Docs",
     it_env_label: "Target Environment:",
     it_tab_single_ddl: "1. Single-Doc Staging DDL",
     it_tab_reconcile_ddl: "2. 3-Way Reconcile Triad DDL",
-    it_ddl_badge_single: "T-SQL • Table: dbo.myscm_Staging_Shipments • SHA256 & B/L Indexed",
+    it_ddl_badge_single: "T-SQL • Table: dbo.OLE_Staging_Shipments • SHA256 & B/L Indexed",
     it_ddl_badge_reconcile: "T-SQL • 2 Relational Tables: Ledger & Discrepancies • ADSp 2017 Audit",
     it_tab_csharp: "C# / .NET 8",
     it_tab_curl: "cURL / CLI",
     it_tab_python: "Python",
     it_tab_webhook: "Webhooks",
-    it_staging_buffer_title: "myscm Live Staging Buffer (MS-SQL Intake)",
+    it_staging_buffer_title: "OLE TMS Live Staging Buffer (MS-SQL Intake)",
     it_staging_buffer_desc: "Recent shipments in staging format prior to automated push into MS-SQL Server. Includes 1-click T-SQL INSERT export.",
     it_col_ref: "Reference / B/L",
     it_col_doctype: "Document Type",
@@ -876,9 +876,9 @@ const translations = {
     it_btn_copy_insert: "Copy T-SQL INSERT",
     it_btn_copy_insert_done: "Copied!",
     it_no_buffer_rows: "No shipments in staging buffer yet.",
-    it_telemetry_gateway: "RedLine Gateway: Online (:8000)",
+    it_telemetry_gateway: "Oceanwide Gateway: Online (:8000)",
     it_telemetry_db: "MS-SQL Server: Ready (2019/2022)",
-    it_telemetry_bridge: "myscm ERP Bridge: Connected",
+    it_telemetry_bridge: "OLE Enterprise TMS Bridge: Connected",
     it_telemetry_latency: "Latency: < 15ms",
     quar_heading: "Quarantine Console & Demurrage Prevention",
     quar_subheading: "Operational command center for isolating and resolving cargo discrepancies to avert port & airport demurrage.",
@@ -936,7 +936,7 @@ const translations = {
     th_prevented_fees: "Prevented Demurrage",
     th_unit_id: "Container / ULD / Waybill ID",
     ledger_heading: "Immutable Ingestion Audit Ledger",
-    ledger_subheading: "Complete inspection trail for German customs (ATLAS) audits and mw1 ERP.",
+    ledger_subheading: "Complete inspection trail for German customs (ATLAS) audits and OLE Enterprise TMS.",
     th_timestamp: "Timestamp (UTC)",
     th_reference: "Reference",
     th_gross_kg: "Gross (kg)",
@@ -1013,7 +1013,7 @@ const translations = {
     pipeline_status_idle: "STANDBY",
     
     // Onboarding & Setup Concierge
-    onboarding_badge: "REDLINE GATEWAY - SYSTEM SETUP",
+    onboarding_badge: "OCEANWIDE GATEWAY - SYSTEM SETUP",
     onboarding_title_step1: "1. LANGUAGE SELECTION",
     onboarding_title_step2: "2. DISPLAY THEME",
     onboarding_title_step3: "3. QUICK TOUR",
@@ -1031,7 +1031,7 @@ const translations = {
     onboarding_btn_back: "Back",
     onboarding_btn_next_tour: "Next: Step 3 Quick Tour",
     onboarding_tour_rec_badge: "RECOMMENDED FOR NEW DISPATCHERS (APPROX. 1 MINUTE)",
-    onboarding_step3_heading: "Is this your first time at RedLine Gateway?",
+    onboarding_step3_heading: "Is this your first time at Oceanwide Gateway?",
     onboarding_step3_sub: "We recommend our 10-step interactive guided walkthrough to help you discover how documents are ingested, variances are flagged, and demurrage is avoided.",
     onboarding_tour_pt1: "1. Ingest freight documents & seal with GoBD SHA-256",
     onboarding_tour_pt2: "2. 3-Way Reconciler: Detect 180 kg demurrage variance",
@@ -1052,7 +1052,7 @@ const translations = {
     req_label: "Requirement:",
     obs_label: "Observed:",
     clean_title: "STAGE 4: PRE-CLEARED FOR DISPATCH (VERIFIED COMPLIANT)",
-    clean_sub: "All {n} automated checks passed. Ready for ATLAS customs clearance and staging in mw1 myscm.",
+    clean_sub: "All {n} automated checks passed. Ready for ATLAS customs clearance and staging in OLE Enterprise TMS.",
     quar_title: "STAGE 4: QUARANTINE HOLD (DEMURRAGE RISK ISOLATED)",
     quar_sub_default: "Deterministic audit failed. Prevents detention and demurrage fees across ports, air hubs, and customs terminals.",
     status_verified_clean: "CLEAN",
@@ -1072,7 +1072,7 @@ const translations = {
     paste_no_image: "No image found in clipboard. Copy an image with PrintScreen/Screenshot and press Ctrl+V.",
     paste_shortcut_hint: "Please press Ctrl+V directly on your keyboard to paste a screenshot.",
     ledger_heading: "Immutable Ingestion & Customs Audit Ledger (§ 147 AO / GoBD / ATLAS 9.1)",
-    ledger_subheading: "Tamper-evident, cryptographically sealed document verification trail for German Customs, AEO compliance audits, and mw1group ERP dispatch.",
+    ledger_subheading: "Tamper-evident, cryptographically sealed document verification trail for German Customs, AEO compliance audits, and OLE Enterprise TMS dispatch.",
     ledger_kpi_ftr: "First-Time-Right Rate (FTR)",
     ledger_kpi_ftr_sub: "Zero manual intervention",
     ledger_kpi_weight: "Audited Cargo Mass",
@@ -1141,12 +1141,12 @@ const translations = {
     ledger_csv_exported: "Audit Ledger successfully exported to CSV!",
     ledger_gobd_exported: "GoBD Audit Archive (JSON) successfully exported!",
     ledger_copied_hash: "SHA-256 seal copied to clipboard!",
-    ledger_copied_tsql: "mw1 T-SQL statement copied to clipboard!"
+    ledger_copied_tsql: "OLE T-SQL statement copied to clipboard!"
   }
 };
 
-let currentLang = localStorage.getItem('redline_lang') || 'de';
-let currentTheme = localStorage.getItem('redline_theme') || 'dark';
+let currentLang = localStorage.getItem('ole_lang') || 'de';
+let currentTheme = localStorage.getItem('ole_theme') || 'dark';
 
 // ==========================================
 // INITIALIZATION
@@ -1397,7 +1397,7 @@ function setupDragDropListener() {
 // ==========================================
 function toggleLanguage() {
   currentLang = (currentLang === 'de') ? 'en' : 'de';
-  localStorage.setItem('redline_lang', currentLang);
+  localStorage.setItem('ole_lang', currentLang);
   applyLanguage(currentLang);
 }
 
@@ -1499,7 +1499,7 @@ function t(key) {
 // ==========================================
 function toggleTheme() {
   currentTheme = (currentTheme === 'dark') ? 'light' : 'dark';
-  localStorage.setItem('redline_theme', currentTheme);
+  localStorage.setItem('ole_theme', currentTheme);
   applyTheme(currentTheme);
 }
 
@@ -2170,7 +2170,8 @@ function renderPipelineResponse(data) {
   const icon = document.getElementById('route-icon');
   const title = document.getElementById('route-title');
   const sub = document.getElementById('route-subtitle');
-  const shipId = data.shipment_id || data.shipment_ref || (ext && ext.document_number) || 'RL-2026-EXP';
+  const ref = document.getElementById('route-ref');
+  const shipId = data.shipment_id || data.shipment_ref || (ext && ext.document_number) || 'OLE-2026-EXP';
   if (ref) ref.textContent = `REF: ${shipId}`;
 
   if (isClean) {
@@ -2221,7 +2222,7 @@ function setPipelineStatus(statusKey) {
 
   if (statusKey === 'clean') {
     pBadge.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-500/50', 'shadow-[0_0_10px_rgba(16,185,129,0.2)]', 'badge-status-clean');
-    pBadge.title = isDe ? 'Alle Prüfungen bestanden: Freigegeben für ATLAS und mw1 myscm' : 'All checks passed: Pre-cleared for ATLAS customs and mw1 myscm';
+    pBadge.title = isDe ? 'Alle Prüfungen bestanden: Freigegeben für ATLAS und OLE Enterprise TMS' : 'All checks passed: Pre-cleared for ATLAS customs and OLE Enterprise TMS';
     pBadge.innerHTML = `
       <span class="relative flex h-1.5 w-1.5">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -3492,13 +3493,13 @@ function renderReconciliationResult(data) {
     if (actionText.includes('Quarantäne') || !isMatch) {
       actionText = 'Quarantine Hold: Issue discrepancy notice to shipping agent';
     } else {
-      actionText = 'Auto-dispatch approved for ATLAS filing and mw1 myscm';
+      actionText = 'Auto-dispatch approved for ATLAS filing and OLE Enterprise TMS';
     }
   } else {
     if (actionText.includes('Quarantine') || !isMatch) {
       actionText = 'Quarantäne-Hold: Reederei-Reklamation veranlassen';
     } else {
-      actionText = 'Freigabe für ATLAS-Zollanmeldung und mw1 myscm erteilt';
+      actionText = 'Freigabe für ATLAS-Zollanmeldung und OLE Enterprise TMS erteilt';
     }
   }
 
@@ -3512,15 +3513,15 @@ function renderReconciliationResult(data) {
   let memoContent = '';
   if (isMatch) {
     if (currentLang === 'en') {
-      memoContent = `REDLINE GATEWAY - 3-WAY RECONCILIATION VERIFIED\nContainer: ${refContainer}\nAll freight documents match 100%. Pre-cleared for ATLAS 9.1 and mw1 myscm dispatch.`;
+      memoContent = `OCEANWIDE GATEWAY - 3-WAY MATCH VERIFIED\nContainer: ${refContainer}\nAll freight documents match 100%. Pre-cleared for ATLAS 9.1 and OLE Enterprise TMS dispatch.`;
     } else {
-      memoContent = `REDLINE GATEWAY - 3-WEGE-ABGLEICH BESTANDEN\nContainer: ${refContainer}\nAlle Frachtpapiere stimmen zu 100% überein. Freigegeben für ATLAS 9.1 und mw1 myscm.`;
+      memoContent = `OCEANWIDE GATEWAY - 3-WEGE-ABGLEICH BESTANDEN\nContainer: ${refContainer}\nAlle Frachtpapiere stimmen zu 100% überein. Freigegeben für ATLAS 9.1 und OLE Enterprise TMS.`;
     }
   } else {
     if (currentLang === 'en') {
-      memoContent = `DISCREPANCY NOTICE (Red Line / mw1group)\nReference: Container ${refContainer} - 3-Way Cross-Audit\nStatus: QUARANTINE HOLD (Demurrage risk averted: ${formattedEur} EUR)\n\nIdentified discrepancies between freight documents:\n  • Weight variance: B/L indicates 18,450.00 kg, Packing List indicates 18,270.00 kg (Delta: 180.00 kg)\n\nImmediate action required:\nPlease submit an amended copy of the packing list or waybill immediately to prevent terminal demurrage fees upon vessel arrival.`;
+      memoContent = `ADSp 2017 DISCREPANCY NOTICE (OLE Oceanwide Logistics Europe GmbH / OLGN)\nReference: Container ${refContainer} - 3-Way Cross-Audit\nStatus: QUARANTINE HOLD (Demurrage risk averted: ${formattedEur} EUR)\n\nIdentified discrepancies between freight documents:\n  • Weight variance: B/L indicates 18,450.00 kg, Packing List indicates 18,270.00 kg (Delta: 180.00 kg)\n\nImmediate action required:\nPlease submit an amended copy of the packing list or waybill immediately to prevent terminal demurrage fees upon vessel arrival at Port of Hamburg / European terminals.`;
     } else {
-      memoContent = `SPEDITIONS-BEANSTANDUNG (Red Line / mw1group)\nBezug: Container ${refContainer} - Transportabgleich\nStatus: QUARANTÄNE-HOLD (Standgeld-Risiko abgewendet: ${formattedEur} EUR)\n\nFestgestellte Abweichungen zwischen Frachtpapieren:\n  • Gewichtsabweichung: B/L weist 18,450.00 kg aus, Packliste weist 18,270.00 kg aus (Delta: 180.00 kg)\n\nSofortmaßnahme erforderlich:\nBitte reichen Sie umgehend eine korrigierte Ausfertigung der Packliste bzw. des Frachtbriefs ein, um Standgelder (Demurrage & Detention) bei Schiffsankunft zu verhindern.`;
+      memoContent = `ADSp 2017 REKLAMATIONSMEMO (OLE Oceanwide Logistics Europe GmbH)\nBezug: Container ${refContainer} - Transportabgleich\nStatus: QUARANTÄNE-HOLD (Standgeld-Risiko abgewendet: ${formattedEur} EUR)\n\nFestgestellte Abweichungen zwischen Frachtpapieren:\n  • Gewichtsabweichung: B/L weist 18,450.00 kg aus, Packliste weist 18,270.00 kg aus (Delta: 180.00 kg)\n\nSofortmaßnahme erforderlich:\nBitte reichen Sie umgehend eine korrigierte Ausfertigung der Packliste bzw. des Frachtbriefs ein, um Standgelder (Demurrage & Detention) bei Schiffsankunft am Hamburger Hafen / europäischen Terminals zu verhindern.`;
     }
   }
 
@@ -3657,8 +3658,8 @@ let itRecentRows = [];
 
 const itEnvUrls = {
   local: 'http://localhost:8000',
-  staging: 'https://staging-api.mw1group.com',
-  prod: 'https://gateway.mw1group.com'
+  staging: 'https://staging-gateway.oceanwidelogistics.com',
+  prod: 'https://gateway.oceanwidelogistics.com'
 };
 
 async function loadIntegrationCode() {
@@ -3753,7 +3754,7 @@ function renderItClientTab() {
   if (labelEl) labelEl.textContent = currentUrl;
 
   if (captionEl) {
-    let tech = 'C# / ASP.NET myscm Driver';
+    let tech = 'C# / .NET 8 OLE Client';
     if (currentItClientTab === 'curl') tech = 'cURL / Bash CLI Pipeline';
     else if (currentItClientTab === 'python') tech = 'Python / Requests Integration Worker';
     else if (currentItClientTab === 'webhook') tech = 'Webhook Event Schemas (Customs / Quarantine)';
@@ -3875,7 +3876,7 @@ function copyStagingRowInsert(idx) {
   const gross = row.gross_weight_kg ? Number(row.gross_weight_kg).toFixed(2) : '0.00';
   const val = row.total_value ? Number(row.total_value).toFixed(2) : '0.00';
 
-  const sql = `INSERT INTO dbo.myscm_Staging_Shipments (
+  const sql = `INSERT INTO dbo.OLE_Staging_Shipments (
     ReferenceId,
     DocumentType,
     Sha256Hash,
@@ -3976,7 +3977,7 @@ function enrichQuarantineItem(r) {
   } else if (docType.includes('cmr') || docType.includes('road') || docType.includes('lkw')) {
     mode = 'road';
     port = 'Hub Malaszewicze / Duisburg';
-    carrier = 'RedLine Overland Transport';
+    carrier = 'OLE Intermodal Transport';
     dailyRate = 180.0;
   } else {
     mode = 'ocean';
@@ -4610,7 +4611,7 @@ function renderLedgerTable() {
                 </div>
                 <div class="p-2 rounded-lg bg-[#0E1626] border border-[#1E293B]">
                   <div class="text-slate-400 text-[10px]">5. ERP BRIDGE</div>
-                  <div class="font-bold text-purple-400 text-xs">mw1 myscm</div>
+                  <div class="font-bold text-purple-400 text-xs">OLE TMS</div>
                   <div class="text-[10px] text-slate-400">MS-SQL Staging</div>
                 </div>
               </div>
@@ -4771,14 +4772,14 @@ function generateClientTsqlFromItem(data, ext) {
   const atlasReady = (data.atlas_ready || (data.audit_report && data.audit_report.atlas_ready)) ? 1 : 0;
   const quarHold = isClean ? 0 : 1;
   const demurrageVal = isClean ? 0.0 : (data.estimated_liability || (data.audit_report && data.audit_report.estimated_demurrage_liability_eur) || 750.0);
-  const refId = (data.shipment_id || data.shipment_ref || (ext && ext.document_number) || 'RL-2026-EXP').replace(/'/g, "''");
+  const refId = (data.shipment_id || data.shipment_ref || (ext && ext.document_number) || 'OLE-2026-EXP').replace(/'/g, "''");
   const docType = (data.document_type || (ext && ext.document_type) || 'BILL_OF_LADING').replace(/'/g, "''");
   const sha = (data.sha256_hash || data.sha256 || 'ad0bac5f94c6a2ac2955909ead4a01ad7b47c2da104e8efb89ebd9e6bf1b5086').replace(/'/g, "''");
   const gross = data.gross_weight_kg ? Number(data.gross_weight_kg).toFixed(2) : (ext && ext.gross_weight_kg ? Number(ext.gross_weight_kg).toFixed(2) : '0.00');
   const val = data.total_amount ? Number(data.total_amount).toFixed(2) : (ext && ext.total_amount ? Number(ext.total_amount).toFixed(2) : '0.00');
   const curr = (data.currency || (ext && ext.currency) || 'EUR').replace(/'/g, "''");
 
-  return `INSERT INTO dbo.myscm_Staging_Shipments (
+  return `INSERT INTO dbo.OLE_Staging_Shipments (
     ReferenceId,
     DocumentType,
     Sha256Hash,
@@ -4887,7 +4888,7 @@ function inspectShipmentRecord(shipmentRef) {
         ],
         demurrage_prevented_eur: aud.demurrage_prevented_eur || item.estimated_liability || 750.0,
         action_required: aud.action_required || (isDe ? 'Diskrepanz festgestellt: Standgeldrisiko am Terminal' : 'Discrepancy detected: Demurrage risk at terminal'),
-        discrepancy_notice_text: aud.discrepancy_notice_text || `REDLINE GATEWAY - REKLAMATIONSMEMO\nRef: ${item.shipment_ref}\nContainer: ${containerNo}\nDiskrepanz: Checksum/Weight Mismatch\nHaftungsvorbehalt gem. ADSp 2017 & § 412 HGB erklärt.`,
+        discrepancy_notice_text: aud.discrepancy_notice_text || `ADSp 2017 REKLAMATIONSMEMO (OLE Oceanwide Logistics Europe GmbH)\nRef: ${item.shipment_ref}\nContainer: ${containerNo}\nDiskrepanz: Checksum/Weight Mismatch\nHaftungsvorbehalt gem. ADSp 2017 & § 412 HGB erklärt.`,
         preview_urls: {
           bol: "/static/sample_docs/sample bill of ladling.png",
           invoice: "/static/sample_docs/sample commercial invoice.png",
@@ -4979,7 +4980,7 @@ function copyLedgerTsql(shipmentRef) {
   const val = row.total_amount ? Number(row.total_amount).toFixed(2) : '0.00';
   const curr = (row.currency || 'EUR').replace(/'/g, "''");
 
-  const sql = `INSERT INTO dbo.myscm_Staging_Shipments (
+  const sql = `INSERT INTO dbo.OLE_Staging_Shipments (
     ReferenceId,
     DocumentType,
     Sha256Hash,
@@ -5105,7 +5106,7 @@ function copyCustomsCertText() {
   const isDe = (currentLang === 'de');
   const text = `${isDe ? 'ZOLL-AUDIT-ZERTIFIKAT (§ 147 AO / ATLAS 9.1)' : 'CUSTOMS COMPLIANCE AUDIT CERTIFICATE (§ 147 AO / ATLAS 9.1)'}
 ========================================================================
-${isDe ? 'MANDANT' : 'CLIENT'}: Red Line Internationale Spedition GmbH // mw1group (EORI: DE88219430)
+${isDe ? 'MANDANT' : 'CLIENT'}: OLE Oceanwide Logistics Europe GmbH // OLGN Hamburg (HRB 122583)
 ${isDe ? 'REFERENZ-NR.' : 'REFERENCE ID'}: ${d.shipment_ref}
 ${isDe ? 'ZEITSTEMPEL (UTC)' : 'TIMESTAMP (UTC)'}: ${d.processed_at}
 ${isDe ? 'BELEGART' : 'DOC TYPE'}: ${d.document_type}
@@ -5182,7 +5183,7 @@ function exportLedgerCsv() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.setAttribute("href", url);
-  link.setAttribute("download", `RedLine_Audit_Ledger_${new Date().toISOString().slice(0, 10)}.csv`);
+  link.setAttribute("download", `Oceanwide_Audit_Ledger_${new Date().toISOString().slice(0, 10)}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -5198,7 +5199,7 @@ function exportLedgerGobdJson() {
   const rowsToExport = getFilteredLedgerRows();
   const archive = {
     standard: "GoBD § 147 AO / ATLAS 9.1",
-    client: "Red Line Internationale Spedition GmbH · mw1group",
+    client: "OLE Oceanwide Logistics Europe GmbH · OLGN Hamburg",
     eori: "DE88219430",
     exported_at_utc: new Date().toISOString(),
     records_count: rowsToExport.length,
@@ -5230,7 +5231,7 @@ function exportLedgerGobdJson() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.setAttribute("href", url);
-  link.setAttribute("download", `RedLine_GoBD_Audit_Ledger_${new Date().toISOString().slice(0, 10)}.json`);
+  link.setAttribute("download", `Oceanwide_GoBD_Audit_Ledger_${new Date().toISOString().slice(0, 10)}.json`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -5566,7 +5567,7 @@ Eingangsdatum: ${item.processed_at || 'Heute'}
 
 Sehr geehrte Damen und Herren,
 
-im Rahmen des deterministischen Wareneingangs-Audits (RedLine Gateway) der oben genannten Sendung wurde eine unauflösbare Diskrepanz festgestellt:
+im Rahmen des deterministischen Wareneingangs-Audits (Oceanwide Gateway) der oben genannten Sendung wurde eine unauflösbare Diskrepanz festgestellt:
 
 FEHLERBEFUND:
 ${item.reasonShort}
@@ -5578,8 +5579,8 @@ Liegegelder (Demurrage & Detention), Verwahrungsentgelte sowie terminalseitige S
 Bitte veranlassen Sie unverzüglich die Klärung und halten Sie die Freitage bis zur Behebung des Befunds an.
 
 Mit freundlichen Grüßen,
-Red Line Internationale Spedition GmbH - mw1group
-Zentrale Leitstand-Disposition & Demurrage-Shield` : `To: Carrier / Terminal Operations (${item.carrier})
+OLE Oceanwide Logistics Europe GmbH
+Hamburg Seaport Operations & Demurrage Shield (Süderstraße 77, 20097 Hamburg)` : `To: Carrier / Terminal Operations (${item.carrier})
 Terminal: ${item.port}
 Shipment Ref: ${item.shipment_ref}
 Container / ULD ID: ${item.unitId}
@@ -5587,7 +5588,7 @@ Receipt Date: ${item.processed_at || 'Today'}
 
 Dear Sir or Madam,
 
-During automated deterministic inbound auditing (RedLine Gateway) for the referenced shipment, an irreconcilable discrepancy was identified:
+During automated deterministic inbound auditing (Oceanwide Gateway) for the referenced shipment, an irreconcilable discrepancy was identified:
 
 AUDIT FINDING:
 ${item.reasonShort}
@@ -5599,8 +5600,8 @@ Demurrage, detention, and terminal storage charges resulting from this documenta
 Please initiate an immediate clarification and pause the free-time clock until this issue has been rectified.
 
 Sincerely,
-Red Line Internationale Spedition GmbH - mw1group
-Central Dispatch Operations & Demurrage Shield`;
+OLE Oceanwide Logistics Europe GmbH
+Hamburg Seaport Operations & Demurrage Shield (Süderstraße 77, 20097 Hamburg)`;
 
   const subjEl = document.getElementById('quar-claim-subject');
   const bodyEl = document.getElementById('quar-claim-body');
@@ -5643,8 +5644,8 @@ function requestQuarRevisedDocs(shipmentRef) {
 
   const isDe = (currentLang === 'de');
   const mailText = isDe
-    ? `Sehr geehrte Damen und Herren,\n\nbei der automatisierten Prüfung der Sendung ${item.shipment_ref} (Container: ${item.unitId}) wurde folgende Diskrepanz festgestellt:\n${item.reasonShort}\n\nUm drohende Standgelder am Terminal ${item.port} abzuwenden, bitten wir umgehend um Übersendung einer korrigierten Packliste bzw. Handelsrechnung.\n\nMit freundlichen Grüßen,\nRed Line Internationale Spedition GmbH / mw1group Leitstand`
-    : `Dear Sir or Madam,\n\nDuring automated deterministic auditing of shipment ${item.shipment_ref} (Container/Unit: ${item.unitId}), the following discrepancy was detected:\n${item.reasonShort}\n\nTo prevent demurrage and storage penalties at terminal ${item.port}, please immediately submit an amended packing list or commercial invoice.\n\nBest regards,\nRed Line Internationale Spedition GmbH / mw1group Central Dispatch`;
+    ? `Sehr geehrte Damen und Herren,\n\nbei der automatisierten Prüfung der Sendung ${item.shipment_ref} (Container: ${item.unitId}) wurde folgende Diskrepanz festgestellt:\n${item.reasonShort}\n\nUm drohende Standgelder am Terminal ${item.port} abzuwenden, bitten wir umgehend um Übersendung einer korrigierten Packliste bzw. Handelsrechnung.\n\nMit freundlichen Grüßen,\nOLE Oceanwide Logistics Europe GmbH / OLGN Leitstand Hamburg`
+    : `Dear Sir or Madam,\n\nDuring automated deterministic auditing of shipment ${item.shipment_ref} (Container/Unit: ${item.unitId}), the following discrepancy was detected:\n${item.reasonShort}\n\nTo prevent demurrage and storage penalties at terminal ${item.port}, please immediately submit an amended packing list or commercial invoice.\n\nBest regards,\nOLE Oceanwide Logistics Europe GmbH / OLGN Central Dispatch Hamburg`;
 
   navigator.clipboard.writeText(mailText).then(() => {
     alert(t('quar_request_copied') + '\n\n' + mailText);
@@ -5739,7 +5740,7 @@ function exportQuarantineCsv() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.setAttribute("href", url);
-  link.setAttribute("download", `RedLine_Quarantine_Report_${new Date().toISOString().slice(0, 10)}.csv`);
+  link.setAttribute("download", `Oceanwide_Quarantine_Report_${new Date().toISOString().slice(0, 10)}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -6143,10 +6144,10 @@ const tourSteps = [
     tab: 'pipeline',
     targetId: ['stage-4-card', 'stage-5-card'],
     dock: 'left',
-    titleDe: "7. Stufe 4 & 5: ATLAS Freigabe & mw1 myscm T-SQL",
-    titleEn: "7. Stage 4 & 5: ATLAS Pre-Clearance & mw1 myscm T-SQL",
-    descDe: "Die Sendung ist 'PRE-CLEARED FOR DISPATCH'. In Stufe 5 wurde automatisch das T-SQL INSERT-Statement erzeugt, um die Daten direkt in die mw1 myscm ERP-Datenbank (t_myscm_shipment_inbound) einzuspeisen.",
-    descEn: "The shipment is 'PRE-CLEARED FOR DISPATCH'. In Stage 5, the T-SQL INSERT statement was automatically generated to inject the verified data directly into the mw1 myscm ERP table (t_myscm_shipment_inbound).",
+    titleDe: "7. Stufe 4 & 5: ATLAS Freigabe & OLE TMS T-SQL",
+    titleEn: "7. Stage 4 & 5: ATLAS Pre-Clearance & OLE TMS T-SQL",
+    descDe: "Die Sendung ist 'PRE-CLEARED FOR DISPATCH'. In Stufe 5 wurde automatisch das T-SQL INSERT-Statement erzeugt, um die Daten direkt in die OLE Enterprise TMS Datenbank (OLE_Staging_Shipments) einzuspeisen.",
+    descEn: "The shipment is 'PRE-CLEARED FOR DISPATCH'. In Stage 5, the T-SQL INSERT statement was automatically generated to inject the verified data directly into the OLE Enterprise TMS table (OLE_Staging_Shipments).",
     actionLabelDe: null,
     actionLabelEn: null,
     actionFn: null
@@ -6548,8 +6549,8 @@ let currentWelcomeStep = 1;
 let toolbarPointerTimeout = null;
 
 function checkInitialOnboarding() {
-  const isSuppressedSession = sessionStorage.getItem('redline_onboarding_session_suppressed');
-  const isCompleted = localStorage.getItem('redline_onboarding_completed');
+  const isSuppressedSession = sessionStorage.getItem('ole_onboarding_session_suppressed');
+  const isCompleted = localStorage.getItem('ole_onboarding_completed');
   if (isSuppressedSession || isCompleted) {
     return;
   }
@@ -6569,7 +6570,7 @@ function openWelcomeSetupModal(step = 1) {
 function closeWelcomeSetupModal(showPointer = false) {
   const modal = document.getElementById('modal-welcome-setup');
   if (modal) modal.classList.add('hidden');
-  sessionStorage.setItem('redline_onboarding_session_suppressed', 'true');
+  sessionStorage.setItem('ole_onboarding_session_suppressed', 'true');
   if (showPointer) {
     showToolbarPointer();
   }
@@ -6610,7 +6611,7 @@ function setWelcomeStep(stepNumber) {
 
 function selectWelcomeLanguage(lang) {
   currentLang = lang;
-  localStorage.setItem('redline_lang', lang);
+  localStorage.setItem('ole_lang', lang);
   applyLanguage(lang);
   updateWelcomeLanguageUI();
   setWelcomeStep(currentWelcomeStep);
@@ -6640,7 +6641,7 @@ function updateWelcomeLanguageUI() {
 
 function selectWelcomeTheme(theme) {
   applyTheme(theme);
-  localStorage.setItem('redline_theme', theme);
+  localStorage.setItem('ole_theme', theme);
   updateWelcomeThemeUI();
 }
 
@@ -6669,9 +6670,9 @@ function updateWelcomeThemeUI() {
 function finishWelcomeSetup(startTour = false) {
   const chk = document.getElementById('onboarding-chk-dont-ask');
   if (chk && chk.checked) {
-    sessionStorage.setItem('redline_onboarding_session_suppressed', 'true');
+    sessionStorage.setItem('ole_onboarding_session_suppressed', 'true');
   }
-  localStorage.setItem('redline_onboarding_completed', 'true');
+  localStorage.setItem('ole_onboarding_completed', 'true');
   closeWelcomeSetupModal(false);
 
   if (startTour) {

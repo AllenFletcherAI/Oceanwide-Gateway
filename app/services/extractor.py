@@ -11,7 +11,7 @@ from app.models.schemas import ExtractedDocument, LineItem
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """You are the enterprise document intake parser for Red Line Internationale Spedition GmbH (mw1group), located at Gewerbepark Kachtenhausen 1-10, 32791 Lage, Germany.
+SYSTEM_PROMPT = """You are the enterprise document intake parser for OLE Oceanwide Logistics Europe GmbH (Oceanwide Logistics Global Network / OLGN), located at Süderstraße 77, 20097 Hamburg, Germany.
 Your task is to analyze this international freight or customs shipping document and extract all available data fields accurately without hallucinating.
 
 Identify the document and output a strictly valid JSON object matching this schema:

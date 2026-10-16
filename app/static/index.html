@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="doc_title">RedLine Gateway | Dokumentenprüfung & Zoll-Vorabfertigung</title>
+  <title data-i18n="doc_title">Oceanwide Gateway | OLE Oceanwide Logistics Europe GmbH</title>
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
@@ -13,7 +13,7 @@
   <script>
     (function() {
       try {
-        var savedTheme = localStorage.getItem('redline_theme');
+        var savedTheme = localStorage.getItem('ole_theme');
         if (savedTheme === 'light') {
           document.documentElement.classList.add('theme-light');
         }
@@ -378,20 +378,48 @@
     .theme-light .align-value {
       color: #0F172A !important;
     }
-    .theme-light #btn-browse-main,
-    .theme-light #btn-browse-main *,
-    .theme-light .bg-blue-600,
-    .theme-light .bg-blue-600 *,
-    .theme-light .bg-red-600,
-    .theme-light .bg-red-600 *,
-    .theme-light .bg-\[\#312783\],
-    .theme-light .bg-\[\#312783\] *,
-    .theme-light #brand-logo-badge,
-    .theme-light #brand-logo-badge * {
+    .theme-light #brand-logo-badge {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+    .theme-light #btn-browse-main {
+      background-color: #2563EB !important;
+      color: #FFFFFF !important;
+      border: none !important;
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3) !important;
+    }
+    .theme-light #btn-browse-main:hover {
+      background-color: #1D4ED8 !important;
+    }
+    .theme-light #btn-browse-main * {
+      color: #FFFFFF !important;
+      background-color: transparent !important;
+    }
+    .theme-light .bg-blue-600 {
+      background-color: #2563EB !important;
       color: #FFFFFF !important;
     }
-    .theme-light #brand-logo-badge {
-      box-shadow: 0 2px 6px rgba(49, 39, 131, 0.3) !important;
+    .theme-light .bg-blue-600 * {
+      color: #FFFFFF !important;
+      background-color: transparent !important;
+    }
+    .theme-light .bg-red-600 {
+      background-color: #DC2626 !important;
+      color: #FFFFFF !important;
+    }
+    .theme-light .bg-red-600 * {
+      color: #FFFFFF !important;
+      background-color: transparent !important;
+    }
+    .theme-light .nav-tab-active {
+      background-color: #DC2626 !important;
+      color: #FFFFFF !important;
+      border-color: #DC2626 !important;
+    }
+    .theme-light .nav-tab-active * {
+      color: #FFFFFF !important;
+      background-color: transparent !important;
     }
     .theme-light .text-slate-100,
     .theme-light .text-slate-200,
@@ -777,6 +805,7 @@
     .theme-light #pipeline-indicator-bar span.text-slate-400 {
       color: #334155 !important;
     }
+    .theme-light #pipeline-indicator-bar span.text-slate-600,
     .theme-light #pipeline-indicator-bar span.text-slate-700 {
       color: #94A3B8 !important;
     }
@@ -952,6 +981,59 @@
       color: #0F172A !important;
       border-color: #CBD5E1 !important;
       font-weight: 700 !important;
+    }
+    /* Stage 3 Deterministic Compliance Audits in Light Mode */
+    .theme-light #audit-checks-container .bg-\[\#081220\] {
+      background-color: #F0FDF4 !important;
+      border-color: #86EFAC !important;
+    }
+    .theme-light #audit-checks-container .bg-\[\#180A0E\] {
+      background-color: #FEF2F2 !important;
+      border-color: #FCA5A5 !important;
+    }
+    .theme-light #audit-checks-container .bg-\[\#081220\] span.text-white,
+    .theme-light #audit-checks-container .bg-\[\#180A0E\] span.text-white {
+      color: #0F172A !important;
+      font-weight: 700 !important;
+    }
+    .theme-light #audit-checks-container .bg-\[\#081220\] span.text-slate-300,
+    .theme-light #audit-checks-container .bg-\[\#180A0E\] span.text-slate-300 {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+    .theme-light #audit-checks-container .text-slate-400 {
+      color: #475569 !important;
+    }
+    .theme-light #audit-checks-container .text-emerald-400\/90 {
+      color: #047857 !important;
+      font-weight: 600 !important;
+    }
+    .theme-light #audit-checks-container .text-red-400 {
+      color: #B91C1C !important;
+      font-weight: 600 !important;
+    }
+
+    /* Stage 4 Routing & Compliance in Light Mode */
+    .theme-light #route-icon.bg-emerald-900\/60 {
+      background-color: #D1FAE5 !important;
+      color: #065F46 !important;
+    }
+    .theme-light #route-icon.bg-red-900\/60 {
+      background-color: #FEE2E2 !important;
+      color: #B91C1C !important;
+    }
+    .theme-light #route-ref {
+      background-color: #F1F5F9 !important;
+      border-color: #CBD5E1 !important;
+      color: #1E293B !important;
+    }
+    .theme-light #route-banner.bg-emerald-950\/20 {
+      background-color: #F0FDF4 !important;
+      border-color: #86EFAC !important;
+    }
+    .theme-light #route-banner.bg-red-950\/20 {
+      background-color: #FEF2F2 !important;
+      border-color: #FCA5A5 !important;
     }
     .theme-light #view-reconcile .bg-\[\#080D18\] {
       background-color: #F1F5F9 !important;
@@ -2037,14 +2119,14 @@
   <!-- Top Executive Terminal Header -->
   <header class="h-14 bg-[#0B1220] border-b border-[#1E293B] px-6 flex items-center justify-between flex-shrink-0 z-50">
     <div class="flex items-center space-x-4">
-      <div id="brand-logo-badge" style="color: #ffffff !important;" class="h-9 w-9 rounded-lg bg-[#312783] flex items-center justify-center font-bold text-white text-base shadow-md shadow-indigo-950/40">
-        RL
+      <div id="brand-logo-badge" class="h-9 w-9 rounded-lg bg-white border border-slate-200/80 flex items-center justify-center p-0.5 shadow-md shadow-blue-950/40 flex-shrink-0 overflow-hidden">
+        <img src="/static/img/ole_logo.png" alt="OLE Logo" class="h-full w-full object-contain">
       </div>
       <div>
         <div class="flex items-center space-x-2.5">
-          <h1 class="text-base font-bold tracking-tight text-white uppercase">RedLine Gateway</h1>
+          <h1 class="text-base font-bold tracking-tight text-white uppercase">Oceanwide Gateway</h1>
           <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-700 text-emerald-400 font-medium flex items-center gap-1.5">
-            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span> <span data-i18n="badge_myscm">mw1 myscm Live Bridge</span>
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span> <span data-i18n="badge_ole_bridge">OLE Active TMS Bridge</span>
           </span>
         </div>
       </div>
@@ -2388,7 +2470,7 @@
               <i class="fa-solid fa-shield-halved text-emerald-400"></i> <span data-i18n="telemetry_guide_badge">Automatische Zoll- & Dokumentenprüfung</span>
             </div>
             <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight" data-i18n="telemetry_idle_heading">
-              So funktioniert das RedLine Gateway
+              So funktioniert das Oceanwide Gateway
             </h2>
             <p class="text-xs sm:text-sm text-slate-300 max-w-md leading-relaxed" data-i18n="telemetry_idle_desc">
               In drei Schritten von der Frachturkunde zur fehlerfreien Verzollung und ERP-Übergabe:
@@ -2435,7 +2517,7 @@
               </div>
               <div class="text-left">
                 <div class="text-xs font-bold text-slate-100 mb-0.5" data-i18n="guide_step3_title">Schritt 3: Freigabe für ATLAS & ERP-Export</div>
-                <div class="text-[12px] text-slate-300 leading-normal" data-i18n="guide_step3_desc">Verifizierte Frachtdaten werden direkt für ATLAS-Zollanmeldungen, Hafensysteme und die mw1 myscm Datenbank bereitgestellt.</div>
+                <div class="text-[12px] text-slate-300 leading-normal" data-i18n="guide_step3_desc">Verifizierte Frachtdaten werden direkt für ATLAS-Zollanmeldungen, Hafensysteme und die OLE Enterprise TMS Datenbank bereitgestellt.</div>
               </div>
             </div>
           </div>
@@ -2456,7 +2538,7 @@
               </div>
               <div class="p-2 rounded-lg bg-[#0B1220] border border-[#1E293B] flex items-center justify-center gap-1.5 text-xs text-slate-300 font-medium col-span-2 sm:col-span-1">
                 <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                <span>mw1 myscm (MS-SQL)</span>
+                <span>OLE Enterprise TMS (MS-SQL)</span>
               </div>
             </div>
           </div>
@@ -2546,7 +2628,7 @@
                   </span>
                   <span class="font-bold text-[11px] truncate" data-i18n="step_sql_title">4. T-SQL Staging</span>
                 </div>
-                <span class="text-[10px] text-slate-500 font-mono-code truncate pl-5 sm:pl-0" data-i18n="step_sql_sub">mw1 myscm</span>
+                <span class="text-[10px] text-slate-500 font-mono-code truncate pl-5 sm:pl-0" data-i18n="step_sql_sub">OLE TMS</span>
               </div>
 
               <!-- Stage 5 -->
@@ -2721,7 +2803,7 @@
           <div id="stage-5-card" class="stage-card p-5">
             <div class="flex items-center justify-between border-b border-[#1E293B] pb-3 mb-3">
               <div class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-                <i class="fa-solid fa-database text-purple-400"></i> <span data-i18n="stage5_heading">Stufe 5: Generierter T-SQL INSERT-Befehl (mw1 myscm)</span>
+                <i class="fa-solid fa-database text-purple-400"></i> <span data-i18n="stage5_heading">Stufe 5: Generierter T-SQL INSERT-Befehl (OLE Enterprise TMS)</span>
               </div>
               <div class="flex items-center gap-2">
                 <button id="btn-toggle-sql" onclick="toggleSqlCode()" class="text-xs text-blue-400 hover:text-blue-300 px-2.5 py-1 rounded bg-[#131D31] border border-[#1E293B] flex items-center gap-1.5 cursor-pointer font-medium transition">
@@ -2741,7 +2823,7 @@
                 </div>
                 <div>
                   <div class="font-bold text-slate-200" data-i18n="sql_summary_title">ERP-Übergabe bereit</div>
-                  <div class="text-[11px] text-slate-400" data-i18n="sql_summary_desc">Datensatz für mw1 myscm (MS-SQL Server Tabelle t_myscm_shipment_inbound) vorbereitet.</div>
+                  <div class="text-[11px] text-slate-400" data-i18n="sql_summary_desc">Datensatz für OLE Enterprise TMS (MS-SQL Server Tabelle OLE_Staging_Shipments) vorbereitet.</div>
                 </div>
               </div>
               <span class="px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-700 text-emerald-400 text-[10px] font-bold">READY</span>
@@ -3048,7 +3130,7 @@
               </div>
               <div class="text-left">
                 <div class="text-xs font-bold text-slate-100 mb-0.5" data-i18n="rec_step3_guide_title">Schutzebene: Demurrage-Schutz & Automatische Freigabe</div>
-                <div class="text-[11px] text-slate-300 leading-snug" data-i18n="rec_step3_guide_desc">Erkennt Diskrepanzen vor Terminalankunft, verhindert Liegegelder an Seehäfen und stellt verifizierte Daten für ATLAS 9.1 und das mw1 ERP bereit.</div>
+                <div class="text-[11px] text-slate-300 leading-snug" data-i18n="rec_step3_guide_desc">Erkennt Diskrepanzen vor Terminalankunft, verhindert Liegegelder an Seehäfen und stellt verifizierte Daten für ATLAS 9.1 und das OLE Enterprise TMS bereit.</div>
               </div>
             </div>
 
@@ -3070,7 +3152,7 @@
               </div>
               <div class="px-2.5 py-1 rounded-lg bg-[#0E1626] border border-[#1E293B] text-[11px] text-slate-300 flex items-center gap-1.5 font-medium shadow-sm">
                 <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                <span>mw1 myscm (MS-SQL)</span>
+                <span>OLE Enterprise TMS (MS-SQL)</span>
               </div>
             </div>
           </div>
@@ -3111,7 +3193,7 @@
             <div id="rec-exec-stage-3" class="flex items-center justify-between p-2.5 rounded-xl bg-[#091120] border border-[#1E293B]">
               <div class="flex items-center gap-2 min-w-0">
                 <span class="w-5 h-5 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-[10px] font-bold flex-shrink-0">3</span>
-                <span class="text-slate-400 truncate" data-i18n="rec_exec_stage3_title">Diskrepanz-Matrix & mw1 ERP-Bereitstellung</span>
+                <span class="text-slate-400 truncate" data-i18n="rec_exec_stage3_title">Diskrepanz-Matrix & OLE TMS-Bereitstellung</span>
               </div>
               <span class="text-slate-500 text-[11px] font-mono-code flex-shrink-0">Warten</span>
             </div>
@@ -3289,7 +3371,7 @@
             </h2>
           </div>
           <p class="text-sm text-slate-400 mt-1.5 leading-relaxed" data-i18n="ledger_subheading">
-            Lückenlose, kryptographisch gesiegelte Dokumentenprüfungshistorie für die deutsche Zollverwaltung, AEO-Sicherheitsaudits und mw1group ERP-Synchronisation.
+            Lückenlose, kryptographisch gesiegelte Dokumentenprüfungshistorie für die deutsche Zollverwaltung, AEO-Sicherheitsaudits und OLE TMS ERP-Synchronisation.
           </p>
         </div>
         <div class="flex items-center gap-2.5 flex-wrap">
@@ -3515,11 +3597,11 @@
           <div class="flex items-center gap-2.5">
             <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></span>
             <h2 class="text-base font-bold uppercase text-white flex items-center gap-2">
-              <i class="fa-solid fa-server text-purple-400"></i> <span data-i18n="it_heading">Integrations-Architektur (C# / MS-SQL Server & myscm ERP)</span>
+              <i class="fa-solid fa-server text-purple-400"></i> <span data-i18n="it_heading">Integrations-Architektur (C# / MS-SQL Server & OLE Enterprise TMS)</span>
             </h2>
           </div>
           <p class="text-sm text-slate-400 mt-1.5 leading-relaxed" data-i18n="it_subheading">
-            Enterprise-Command-Bridge: Transact-SQL Schemata, C# / .NET 8 Client-Treiber, REST-APIs und Live-Staging-Puffer für die mw1group Systemlandschaft.
+            Enterprise-Command-Bridge: Transact-SQL Schemata, C# / .NET 8 Client-Treiber, REST-APIs und Live-Staging-Puffer für die OLE Oceanwide Systemlandschaft.
           </p>
         </div>
         <div class="flex items-center gap-2.5 flex-wrap">
@@ -3538,7 +3620,7 @@
         <div class="flex flex-wrap items-center gap-2.5">
           <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-[#0E1626] border border-[#1E293B] text-slate-300 font-medium text-xs shadow-sm">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span data-i18n="it_telemetry_gateway">RedLine Gateway: Online (:8000)</span>
+            <span data-i18n="it_telemetry_gateway">Oceanwide Gateway: Online (:8000)</span>
           </div>
           <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-[#0E1626] border border-[#1E293B] text-slate-300 font-medium text-xs shadow-sm">
             <i class="fa-solid fa-database text-blue-400 text-[11px]"></i>
@@ -3546,7 +3628,7 @@
           </div>
           <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-[#0E1626] border border-[#1E293B] text-slate-300 font-medium text-xs shadow-sm">
             <i class="fa-solid fa-network-wired text-purple-400 text-[11px]"></i>
-            <span data-i18n="it_telemetry_bridge">myscm ERP Bridge: Verbunden</span>
+            <span data-i18n="it_telemetry_bridge">OLE TMS Bridge: Verbunden</span>
           </div>
           <div id="it-ping-pill" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 font-semibold text-xs shadow-sm">
             <i class="fa-solid fa-chart-line text-[11px]"></i>
@@ -3562,7 +3644,7 @@
               Localhost
             </button>
             <button onclick="setItEnvironment('staging')" id="it-env-btn-staging" class="it-env-inactive px-3 py-1.5 rounded-md text-xs font-semibold transition cursor-pointer">
-              mw1 Staging
+              OLE Staging
             </button>
             <button onclick="setItEnvironment('prod')" id="it-env-btn-prod" class="it-env-inactive px-3 py-1.5 rounded-md text-xs font-semibold transition cursor-pointer">
               Production
@@ -3594,7 +3676,7 @@
 
           <div id="it-sql-caption" class="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
             <i class="fa-solid fa-circle-info text-blue-400"></i>
-            <span id="it-sql-caption-text" data-i18n="it_ddl_badge_single">T-SQL • Tabelle: dbo.myscm_Staging_Shipments • SHA256 & B/L Index</span>
+            <span id="it-sql-caption-text" data-i18n="it_ddl_badge_single">T-SQL • Tabelle: dbo.OLE_Staging_Shipments • SHA256 & B/L Index</span>
           </div>
 
           <div class="relative">
@@ -3631,7 +3713,7 @@
 
           <div id="it-client-caption" class="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
             <i class="fa-solid fa-code text-emerald-400"></i>
-            <span id="it-client-caption-text">C# / ASP.NET myscm Driver • Target: <span id="it-client-base-url-label" class="text-emerald-400 font-semibold">http://localhost:8000</span></span>
+            <span id="it-client-caption-text">C# / ASP.NET OLE TMS Driver • Target: <span id="it-client-base-url-label" class="text-emerald-400 font-semibold">http://localhost:8000</span></span>
           </div>
 
           <div class="relative">
@@ -3647,7 +3729,7 @@
         <div>
           <h3 class="text-xs font-bold uppercase text-white flex items-center gap-2">
             <i class="fa-solid fa-database text-blue-400"></i>
-            <span data-i18n="it_staging_buffer_title">myscm Live-Staging-Puffer (MS-SQL Einspeisung)</span>
+            <span data-i18n="it_staging_buffer_title">OLE TMS Live-Staging-Puffer (MS-SQL Einspeisung)</span>
           </h3>
           <p class="text-[11px] text-slate-400 mt-1" data-i18n="it_staging_buffer_desc">
             Aktuelle Sendungen im Staging-Format vor dem automatischen Push in MS-SQL Server. Einschließlich 1-Klick T-SQL INSERT Export.
@@ -3682,10 +3764,10 @@
 
 
   <footer class="h-8 bg-[#0B1220] border-t border-[#1E293B] px-6 flex items-center justify-between text-xs text-slate-400 flex-shrink-0">
-    <div class="truncate">RedLine Gateway &copy; 2026 · Red Line Internationale Spedition GmbH & mw1group</div>
+    <div class="truncate">Oceanwide Gateway &copy; 2026 · OLE Oceanwide Logistics Europe GmbH · Süderstraße 77, 20097 Hamburg · HRB 122583</div>
     <div class="flex items-center gap-2 text-slate-300 font-medium">
       <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="text-xs">ATLAS 9.1 & mw1 myscm Live</span>
+      <span class="text-xs">ATLAS 9.1 & OLE TMS Live</span>
     </div>
   </footer>
 
@@ -3798,7 +3880,7 @@
             Revisionssicherer Prüfnachweis gemäß AO § 147 & GoBD Grundsätzen
           </div>
           <div class="text-[10px] text-slate-400">
-            Mandant: Red Line Internationale Spedition GmbH · mw1group (EORI: DE88219430)
+            Mandant: OLE Oceanwide Logistics Europe GmbH · Süderstraße 77, 20097 Hamburg · HRB 122583
           </div>
         </div>
 
@@ -4177,7 +4259,7 @@
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="text-[11px] font-bold text-blue-400 uppercase tracking-wider" data-i18n="onboarding_badge">REDLINE GATEWAY - SYSTEM-EINRICHTUNG</span>
+              <span class="text-[11px] font-bold text-blue-400 uppercase tracking-wider" data-i18n="onboarding_badge">OCEANWIDE GATEWAY - SYSTEM-EINRICHTUNG</span>
               <span id="onboarding-step-indicator" class="px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800 text-[10px] font-bold">1 / 3</span>
             </div>
             <h3 id="onboarding-modal-title" class="text-sm font-bold text-white uppercase tracking-tight mt-0.5" data-i18n="onboarding_title_step1">1. ARBEITSSPRACHE WÄHLEN | LANGUAGE SELECTION</h3>
@@ -4391,6 +4473,6 @@
     </div>
   </div>
 
-  <script src="/static/js/app.js?v=202610160048"></script>
+  <script src="/static/js/app.js?v=20261016_OLE_v4"></script>
 </body>
 </html>

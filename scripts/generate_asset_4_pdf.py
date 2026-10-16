@@ -5,18 +5,18 @@ import sys
 import fitz  # PyMuPDF
 
 def build_html() -> str:
-    # Embedded official Red Line SVG Logo
+    # Embedded official OLE Maritime SVG Logo
     logo_svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40">
-  <rect width="64" height="64" rx="8" fill="#312783"/>
-  <path d="M11.496875 44.369375000000005V19.630625000000002H22.009999999999998Q25.975625 19.630625000000002 27.7728125 20.297187500000003Q29.57 20.963750000000005 30.65 22.668125000000003Q31.73 24.372500000000002 31.73 26.566250000000004Q31.73 29.350625000000004 30.093125 31.164687500000007Q28.45625 32.978750000000005 25.199375 33.45125Q26.819375 34.39625 27.8740625 35.526875000000004Q28.92875 36.657500000000006 30.7175 39.543125L33.738125 44.369375000000005H27.764375L24.153125000000003 38.986250000000005Q22.229375 36.10062500000001 21.520625000000003 35.3496875Q20.811875 34.59875 20.01875 34.3203125Q19.225625 34.041875000000005 17.504375 34.041875000000005H16.491875V44.369375000000005ZM16.491875 30.093125000000004H20.1875Q23.781875 30.093125000000004 24.67625 29.789375000000007Q25.570625 29.485625000000006 26.076875 28.743125000000006Q26.583125 28.000625000000003 26.583125 26.886875000000003Q26.583125 25.638125000000002 25.916562499999998 24.870312500000004Q25.25 24.102500000000003 24.035 23.900000000000002Q23.427500000000002 23.815625000000004 20.39 23.815625000000004H16.491875Z" fill="#FFFFFF"/>
-  <path d="M36.573125 44.369375000000005V19.833125000000003H41.568124999999995V40.20125H53.988125V44.369375000000005Z" fill="#FFFFFF"/>
+  <rect width="64" height="64" rx="10" fill="#0E1626" stroke="#3B82F6" stroke-width="2"/>
+  <text x="50%" y="54%" font-family="'Inter', sans-serif" font-weight="900" font-size="20" fill="#FFFFFF" text-anchor="middle" dominant-baseline="middle" letter-spacing="1">OLE</text>
+  <path d="M16 48 Q32 42 48 48" stroke="#38BDF8" stroke-width="2" fill="none" stroke-linecap="round"/>
 </svg>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>RedLine Gateway - Technical Integration Specification (Asset 4)</title>
+<title>Oceanwide Gateway - Technical Integration Specification (Asset 4)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
@@ -411,18 +411,18 @@ def build_html() -> str:
           <div class="header-subtitle">Automated Freight Document Audit & Enterprise MS-SQL Staging Bridge</div>
         </div>
       </div>
-      <div class="header-badge">Confidential · mw1group</div>
+      <div class="header-badge">Confidential · OLE Hamburg / OLGN</div>
     </div>
 
     <!-- Metadata Block -->
     <div class="meta-grid">
       <div class="meta-item">
         <span class="meta-label">Zielpersonen</span>
-        <span class="meta-val">H. Schmidt (IT-Ltg) / J. Grotebrune (GF)</span>
+        <span class="meta-val">Peter Czajkowski (CEO) / Christoph Braß (GF)</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Zielinfrastruktur</span>
-        <span class="meta-val">myscm · C# / .NET 8 · MS-SQL 2022</span>
+        <span class="meta-val">OLE Enterprise TMS · C# / .NET 8 · MS-SQL 2022</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Autor / Fachgebiet</span>
@@ -436,7 +436,7 @@ def build_html() -> str:
 
     <h2>1. Management Summary & Zielsetzung</h2>
     <p>
-      Die <strong>Red Line Intern. Spedition GmbH</strong> und die <strong>mw1group</strong> wickeln anspruchsvolle globale See-, Luft- und Landfrachtverkehre mit Schwerpunkt auf LATAM, Nahost und Nordseehäfen (Hamburg, Rotterdam, Antwerpen) ab. In der speditionellen Praxis führt die manuelle Prüfung von Frachtbriefen (B/L, AWB, CMR), Handelsrechnungen und Packlisten zu zwei gravierenden operativen Risiken:
+      Die <strong>OLE Oceanwide Logistics Europe GmbH</strong> und das weltweite Netzwerk <strong>Oceanwide Logistics Global Network (OLGN)</strong> wickeln anspruchsvolle globale See-, Luft- und Hafenlogistikverkehre mit Schwerpunkt auf die Nordsee-Drehscheiben (Hamburg [HHLA CTB, CTA, CTT, Eurogate], Rotterdam, Antwerpen, Bremerhaven) ab. In der speditionellen Praxis führt die manuelle Prüfung von Frachtbriefen (B/L, AWB, CMR), Handelsrechnungen und Packlisten zu zwei gravierenden operativen Risiken:
     </p>
     <ul style="margin-left: 18px; margin-bottom: 5px; font-size: 8.2pt;">
       <li><strong>Standgeld- & Demurrage-Kosten (€150 bis €350/Tag/Container):</strong> Unentdeckte Zahlendreher in ISO 6346 Container-Prüfziffern oder Gewichtsabweichungen (>50 kg Tara-Grenze) blockieren das Gate-in an Seeterminals und verzögern die zollrechtliche Gestellung.</li>
@@ -444,7 +444,7 @@ def build_html() -> str:
     </ul>
 
     <div class="callout callout-purple">
-      <strong>Das Integrationsprinzip (Zero-Disruption Sidecar):</strong> RedLine Gateway wurde speziell für die gewachsene Systemlandschaft der mw1group (C#, ASP.NET, MS-SQL Server 2022, <code>myscm</code>) konzipiert. Es ersetzt weder das führende ERP noch erfordert es risikobehaftete Tabellenänderungen. Die Lösung agiert als <strong>vorgelagerte Prüf- und Validierungs-Schleuse</strong>, die fehlerfreie Datensätze direkt in eine isolierte Staging-Tabelle schreibt.
+      <strong>Das Integrationsprinzip (Zero-Disruption Sidecar):</strong> Oceanwide Gateway wurde speziell für die gewachsene Systemlandschaft der OLE Oceanwide Logistics Europe GmbH (C#, ASP.NET, MS-SQL Server 2022, Enterprise TMS) konzipiert. Es ersetzt weder das führende ERP noch erfordert es risikobehaftete Tabellenänderungen. Die Lösung agiert als <strong>vorgelagerte Prüf- und Validierungs-Schleuse</strong>, die fehlerfreie Datensätze direkt in eine isolierte Staging-Tabelle schreibt.
     </div>
 
     <h2>2. End-to-End Systemarchitektur & Datenfluss</h2>
@@ -454,7 +454,7 @@ def build_html() -> str:
 
     <div class="arch-container">
       <div style="color: #94A3B8; margin-bottom: 4px; font-weight: 700; text-transform: uppercase;">
-        [System-Topologie: RedLine Gateway -> mw1 myscm Staging Pipeline]
+        [System-Topologie: Oceanwide Gateway -> OLE TMS Staging Pipeline]
       </div>
       <div class="flow-row">
         <div class="flow-node">
@@ -462,7 +462,7 @@ def build_html() -> str:
         </div>
         <div class="flow-arrow">-></div>
         <div class="flow-node highlight">
-          RedLine Gateway API<br><span style="color:#C7D2FE; font-size: 6.5pt;">FastAPI · Frankfurt (EU)</span>
+          Oceanwide Gateway API<br><span style="color:#C7D2FE; font-size: 6.5pt;">FastAPI · Hamburg / Frankfurt</span>
         </div>
         <div class="flow-arrow">-></div>
         <div class="flow-node">
@@ -474,7 +474,7 @@ def build_html() -> str:
         </div>
         <div class="flow-arrow">-></div>
         <div class="flow-node erp">
-          [myscm_Staging]<br><span style="color:#BFDBFE; font-size: 6.5pt;">mw1 MS-SQL 2022 ERP</span>
+          [OLE_Staging]<br><span style="color:#BFDBFE; font-size: 6.5pt;">OLE MS-SQL 2022 ERP</span>
         </div>
       </div>
     </div>
@@ -502,7 +502,7 @@ def build_html() -> str:
   </div>
 
   <div class="page-footer">
-    <span>RedLine Gateway v1.0 · Technische Integrationsspezifikation für Hermann Schmidt & Jens Grotebrune</span>
+    <span>Oceanwide Gateway v1.0 · Technische Integrationsspezifikation für Peter Czajkowski & Christoph Braß</span>
     <span class="footer-confidential">Vertraulich / Nur für internen Dienstgebrauch</span>
     <span>Seite 1 von 4</span>
   </div>
@@ -526,20 +526,20 @@ def build_html() -> str:
 
     <h2>3. Datenbank-Architektur: Das Entkoppelte Staging-Modell</h2>
     <p>
-      Um absolute Stabilität für die produktiven <code>myscm</code>-Tabellen zu garantieren, schreibt RedLine Gateway ausschließlich in dedizierte Staging-Relationen. Ein bestehender mw1-Hintergrunddienst oder ein SQL-Agent-Job kann validierte Datensätze per <code>MERGE</code> oder Trigger in den Kernbestand überführen.
+      Um absolute Stabilität für die produktiven TMS-Tabellen zu garantieren, schreibt Oceanwide Gateway ausschließlich in dedizierte Staging-Relationen. Ein bestehender OLE-Hintergrunddienst oder ein SQL-Agent-Job kann validierte Datensätze per <code>MERGE</code> oder Trigger in den Kernbestand überführen.
     </p>
 
     <div class="code-header">
-      <span>1. Transact-SQL DDL: Einzelbeleg-Staging [dbo].[myscm_Staging_Shipments]</span>
+      <span>1. Transact-SQL DDL: Einzelbeleg-Staging [dbo].[OLE_Staging_Shipments]</span>
       <span>MS-SQL Server 2019 / 2022 Target</span>
     </div>
     <div class="code-block"><span class="cm">-- ==============================================================================
--- RedLine Gateway -> mw1 myscm Staging Schema (Single Document Buffer)
--- Author: Allen Fletcher | Target: Microsoft SQL Server (mw1 ERP Database)
+-- Oceanwide Gateway -> OLE Enterprise TMS Staging Schema (Single Document Buffer)
+-- Author: Allen Fletcher | Target: Microsoft SQL Server (OLE TMS Database)
 -- ==============================================================================</span>
-<span class="kw">IF NOT EXISTS</span> (<span class="kw">SELECT</span> * <span class="kw">FROM</span> sys.tables <span class="kw">WHERE</span> name = <span class="str">'myscm_Staging_Shipments'</span>)
+<span class="kw">IF NOT EXISTS</span> (<span class="kw">SELECT</span> * <span class="kw">FROM</span> sys.tables <span class="kw">WHERE</span> name = <span class="str">'OLE_Staging_Shipments'</span>)
 <span class="kw">BEGIN</span>
-    <span class="kw">CREATE TABLE</span> [dbo].[myscm_Staging_Shipments] (
+    <span class="kw">CREATE TABLE</span> [dbo].[OLE_Staging_Shipments] (
         [StagingID]             <span class="typ">INT IDENTITY</span>(<span class="num">1</span>,<span class="num">1</span>) <span class="kw">PRIMARY KEY</span>,
         [ShipmentRef]           <span class="typ">NVARCHAR</span>(<span class="num">50</span>)   <span class="kw">NOT NULL</span>,
         [ContainerNumber]       <span class="typ">NVARCHAR</span>(<span class="num">11</span>)   <span class="kw">NULL</span>,          <span class="cm">-- ISO 6346 (z.B. 'MSKU2264802')</span>
@@ -561,21 +561,21 @@ def build_html() -> str:
         [IngestedAtUtc]         <span class="typ">DATETIME2</span>      <span class="kw">DEFAULT</span> <span class="fn">SYSUTCDATETIME</span>()
     );
 
-    <span class="kw">CREATE INDEX</span> IX_Staging_Container <span class="kw">ON</span> [dbo].[myscm_Staging_Shipments] ([ContainerNumber]);
-    <span class="kw">CREATE INDEX</span> IX_Staging_Status    <span class="kw">ON</span> [dbo].[myscm_Staging_Shipments] ([AuditStatus]);
-    <span class="kw">CREATE INDEX</span> IX_Staging_Sha       <span class="kw">ON</span> [dbo].[myscm_Staging_Shipments] ([Sha256Hash]);
+    <span class="kw">CREATE INDEX</span> IX_OLE_Container <span class="kw">ON</span> [dbo].[OLE_Staging_Shipments] ([ContainerNumber]);
+    <span class="kw">CREATE INDEX</span> IX_OLE_Status    <span class="kw">ON</span> [dbo].[OLE_Staging_Shipments] ([AuditStatus]);
+    <span class="kw">CREATE INDEX</span> IX_OLE_Sha       <span class="kw">ON</span> [dbo].[OLE_Staging_Shipments] ([Sha256Hash]);
 <span class="kw">END</span>;</div>
 
     <div class="code-header">
-      <span>2. Transact-SQL DDL: 3-Wege-Reconciliation Triad [dbo].[myscm_Reconciliation_Ledger]</span>
+      <span>2. Transact-SQL DDL: 3-Wege-Reconciliation Triad [dbo].[OLE_Staging_ReconciliationTriad]</span>
       <span>Cross-Audit Engine</span>
     </div>
     <div class="code-block"><span class="cm">-- ==============================================================================
 -- 3-Wege-Dossier-Abgleich: B/L Frachturkunde vs. Rechnung vs. Packliste
 -- ==============================================================================</span>
-<span class="kw">IF NOT EXISTS</span> (<span class="kw">SELECT</span> * <span class="kw">FROM</span> sys.tables <span class="kw">WHERE</span> name = <span class="str">'myscm_Reconciliation_Ledger'</span>)
+<span class="kw">IF NOT EXISTS</span> (<span class="kw">SELECT</span> * <span class="kw">FROM</span> sys.tables <span class="kw">WHERE</span> name = <span class="str">'OLE_Staging_ReconciliationTriad'</span>)
 <span class="kw">BEGIN</span>
-    <span class="kw">CREATE TABLE</span> [dbo].[myscm_Reconciliation_Ledger] (
+    <span class="kw">CREATE TABLE</span> [dbo].[OLE_Staging_ReconciliationTriad] (
         [AuditID]               <span class="typ">INT IDENTITY</span>(<span class="num">1</span>,<span class="num">1</span>) <span class="kw">PRIMARY KEY</span>,
         [ShipmentRef]           <span class="typ">NVARCHAR</span>(<span class="num">50</span>)   <span class="kw">NOT NULL UNIQUE</span>,
         [ContainerNumber]       <span class="typ">NVARCHAR</span>(<span class="num">11</span>)   <span class="kw">NULL</span>,
@@ -587,7 +587,7 @@ def build_html() -> str:
         [ReconciledAtUtc]       <span class="typ">DATETIME2</span>      <span class="kw">DEFAULT</span> <span class="fn">SYSUTCDATETIME</span>()
     );
 
-    <span class="kw">CREATE INDEX</span> IX_Rec_ShipmentRef <span class="kw">ON</span> [dbo].[myscm_Reconciliation_Ledger] ([ShipmentRef]);
+    <span class="kw">CREATE INDEX</span> IX_OLE_Rec_Ref <span class="kw">ON</span> [dbo].[OLE_Staging_ReconciliationTriad] ([ShipmentRef]);
 <span class="kw">END</span>;</div>
 
     <div class="callout callout-blue">
@@ -596,7 +596,7 @@ def build_html() -> str:
   </div>
 
   <div class="page-footer">
-    <span>RedLine Gateway v1.0 · Technische Integrationsspezifikation für Hermann Schmidt & Jens Grotebrune</span>
+    <span>Oceanwide Gateway v1.0 · Technische Integrationsspezifikation für Peter Czajkowski & Christoph Braß</span>
     <span class="footer-confidential">Vertraulich / Nur für internen Dienstgebrauch</span>
     <span>Seite 2 von 4</span>
   </div>
@@ -612,36 +612,36 @@ def build_html() -> str:
         {logo_svg}
         <div class="header-titles">
           <div class="header-title">Enterprise Client Integration (.NET 8 / C#)</div>
-          <div class="header-subtitle">Ready-to-Paste Client Service for mw1 ASP.NET Core Backend</div>
+          <div class="header-subtitle">Ready-to-Paste Client Service for OLE ASP.NET Core Backend</div>
         </div>
       </div>
       <div class="header-badge">Developer Spec · Page 3</div>
     </div>
 
-    <h2>4. C# / .NET 8 Client-Bibliothek für myscm</h2>
+    <h2>4. C# / .NET 8 Client-Bibliothek für OLE TMS</h2>
     <p>
-      Für die nahtlose Anbindung an die bestehenden ASP.NET / C# Microservices von Herrn Schmidt steht ein leichtgewichtiger, asynchroner Client zur Verfügung, der moderne Best Practices (<code>IHttpClientFactory</code>, <code>System.Net.Http.Json</code>, Zero-Copy Streaming) implementiert:
+      Für die nahtlose Anbindung an die bestehenden ASP.NET / C# Microservices steht ein leichtgewichtiger, asynchroner Client zur Verfügung, der moderne Best Practices (<code>IHttpClientFactory</code>, <code>System.Net.Http.Json</code>, Zero-Copy Streaming) implementiert:
     </p>
 
     <div class="code-header">
-      <span>RedLineGatewayClient.cs - ASP.NET Core Integration Service</span>
+      <span>OceanwideGatewayClient.cs - ASP.NET Core Integration Service</span>
       <span>C# 12 / .NET 8 Target</span>
     </div>
     <div class="code-block"><span class="kw">using</span> System.Net.Http.Json;
 
-<span class="kw">namespace</span> mw1.Logistik.Integration.RedLine;
+<span class="kw">namespace</span> OLE.Logistik.Integration.Oceanwide;
 
-<span class="kw">public interface</span> <span class="typ">IRedLineGatewayClient</span>
+<span class="kw">public interface</span> <span class="typ">IOceanwideGatewayClient</span>
 {{
     <span class="typ">Task</span>&lt;<span class="typ">StagingResponse</span>&gt; <span class="fn">IngestDocumentAsync</span>(<span class="typ">byte</span>[] fileBytes, <span class="typ">string</span> fileName);
     <span class="typ">Task</span>&lt;<span class="typ">ReconciliationResponse</span>&gt; <span class="fn">ReconcileDossierAsync</span>(<span class="typ">byte</span>[] bolBytes, <span class="typ">byte</span>[] invoiceBytes, <span class="typ">byte</span>[] packingBytes);
 }}
 
-<span class="kw">public class</span> <span class="typ">RedLineGatewayClient</span> : <span class="typ">IRedLineGatewayClient</span>
+<span class="kw">public class</span> <span class="typ">OceanwideGatewayClient</span> : <span class="typ">IOceanwideGatewayClient</span>
 {{
     <span class="kw">private readonly</span> <span class="typ">HttpClient</span> _httpClient;
 
-    <span class="kw">public</span> <span class="fn">RedLineGatewayClient</span>(<span class="typ">HttpClient</span> httpClient)
+    <span class="kw">public</span> <span class="fn">OceanwideGatewayClient</span>(<span class="typ">HttpClient</span> httpClient)
     {{
         _httpClient = httpClient; <span class="cm">// Konfiguriert via Dependency Injection in Program.cs</span>
     }}
@@ -677,11 +677,11 @@ def build_html() -> str:
 
     <h2>5. Terminal Ingestion (cURL / CLI Pipeline)</h2>
     <p>
-      Für automatisierte Cronjobs oder direkte Anbindung an Mailroom-Dämonen kann RedLine Gateway direkt per cURL aufgerufen werden:
+      Für automatisierte Cronjobs oder direkte Anbindung an Mailroom-Dämonen kann Oceanwide Gateway direkt per cURL aufgerufen werden:
     </p>
 
     <div class="code-block"><span class="cm"># Automatisierte 3-Wege-Prüfung per cURL Bash-Script:</span>
-curl -X POST "https://redline-gateway.onrender.com/api/v1/reconcile-live" \
+curl -X POST "https://oceanwide-gateway.onrender.com/api/v1/reconcile-live" \
      -H "Accept: application/json" \
      -F "bol_file=@/dossiers/2026/BL_Hamburg_MSKU2264802.pdf" \
      -F "invoice_file=@/dossiers/2026/INV_Rechnung_6620.pdf" \
@@ -689,7 +689,7 @@ curl -X POST "https://redline-gateway.onrender.com/api/v1/reconcile-live" \
   </div>
 
   <div class="page-footer">
-    <span>RedLine Gateway v1.0 · Technische Integrationsspezifikation für Hermann Schmidt & Jens Grotebrune</span>
+    <span>Oceanwide Gateway v1.0 · Technische Integrationsspezifikation für Peter Czajkowski & Christoph Braß</span>
     <span class="footer-confidential">Vertraulich / Nur für internen Dienstgebrauch</span>
     <span>Seite 3 von 4</span>
   </div>
@@ -713,21 +713,21 @@ curl -X POST "https://redline-gateway.onrender.com/api/v1/reconcile-live" \
 
     <h2>6. Datenschutz (DSGVO), Revisionssicherheit (GoBD) & Compliance</h2>
     <p>
-      Für deutsche Logistikunternehmen sind Rechtssicherheit und Datenschutz nicht verhandelbar. RedLine Gateway erfüllt sämtliche Vorgaben der Finanzverwaltung und europäischen Datenschutzgesetze:
+      Für deutsche Logistikunternehmen sind Rechtssicherheit und Datenschutz nicht verhandelbar. Oceanwide Gateway erfüllt sämtliche Vorgaben der Finanzverwaltung und europäischen Datenschutzgesetze:
     </p>
 
     <table class="data-table">
       <thead>
         <tr>
           <th style="width: 26%;">Compliance-Bereich</th>
-          <th style="width: 46%;">Architektur-Maßnahme in RedLine Gateway</th>
+          <th style="width: 46%;">Architektur-Maßnahme in Oceanwide Gateway</th>
           <th style="width: 28%;">Rechtlicher Standard</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>DSGVO / Datensouveränität</strong></td>
-          <td>Serverstandort Frankfurt am Main (EU-Central). Keine Übertragung in Drittstaaten. Ephemere In-Memory-Verarbeitung ohne persistente Speicherung sensibler Kundendaten im Gateway.</td>
+          <td>Serverstandort Frankfurt am Main (EU-Central) / Hamburg. Keine Übertragung in Drittstaaten. Ephemere In-Memory-Verarbeitung ohne persistente Speicherung sensibler Kundendaten im Gateway.</td>
           <td><span class="pill pill-green">Art. 28 DSGVO (AVV)</span></td>
         </tr>
         <tr>
@@ -770,8 +770,8 @@ curl -X POST "https://redline-gateway.onrender.com/api/v1/reconcile-live" \
       </div>
       <div>
         <div class="callout callout-blue" style="margin-top: 0; padding: 5px 8px;">
-          <strong>Skalierbarkeit für mw1:</strong><br>
-          Konzipiert für einen Durchsatz von <strong>&gt; 50.000 Dokumenten / Monat</strong>. Kann wahlweise in der gesicherten Cloud (Frankfurt) oder vollständig On-Premise via Docker in der mw1-Serverumgebung betrieben werden.
+          <strong>Skalierbarkeit für OLE Oceanwide:</strong><br>
+          Konzipiert für einen Durchsatz von <strong>&gt; 50.000 Dokumenten / Monat</strong>. Kann wahlweise in der gesicherten Cloud (Frankfurt) oder vollständig On-Premise via Docker in der OLE-Serverumgebung betrieben werden.
         </div>
       </div>
     </div>
@@ -788,18 +788,18 @@ curl -X POST "https://redline-gateway.onrender.com/api/v1/reconcile-live" \
       <tbody>
         <tr>
           <td><strong>Tag 1 (0–24h): Bereitstellung</strong></td>
-          <td>Ausführung des T-SQL Staging-Skripts auf der MS-SQL Testdatenbank. Bereitstellung der API-Schlüssel & Gateway-Endpunkte. Zero Handholding für mw1 IT.</td>
-          <td>Hermann Schmidt (IT)<br>Allen Fletcher</td>
+          <td>Ausführung des T-SQL Staging-Skripts auf der MS-SQL Testdatenbank. Bereitstellung der API-Schlüssel & Gateway-Endpunkte. Zero Handholding für OLE IT.</td>
+          <td>IT-Leitung (OLE)<br>Allen Fletcher</td>
         </tr>
         <tr>
           <td><strong>Tag 2 (24–48h): Shadow-Betrieb</strong></td>
-          <td>Einbindung der <code>RedLineGatewayClient.cs</code> in den bestehenden Dispositions-Workflow. Parallele Schattenprüfung von 50 echten Sendungsdossiers ohne ERP-Schreibzugriff.</td>
-          <td>Leitender Disponent<br>Allen Fletcher</td>
+          <td>Einbindung der <code>OceanwideGatewayClient.cs</code> in den bestehenden Dispositions-Workflow. Parallele Schattenprüfung von 50 echten Sendungsdossiers ohne ERP-Schreibzugriff.</td>
+          <td>Leitender Seefracht-Disponent<br>Allen Fletcher</td>
         </tr>
         <tr>
           <td><strong>Go-Live (ab 48h)</strong></td>
-          <td>Aktivierung der automatischen Standgeld-Quarantäne und Übertragung verifizierter Dossiers in <code>[dbo].[myscm_Staging_Shipments]</code>.</td>
-          <td>Jens Grotebrune (CEO)<br>Hermann Schmidt</td>
+          <td>Aktivierung der automatischen Standgeld-Quarantäne und Übertragung verifizierter Dossiers in <code>[dbo].[OLE_Staging_Shipments]</code>.</td>
+          <td>Peter Czajkowski (CEO)<br>Christoph Braß (GF)</td>
         </tr>
       </tbody>
     </table>
@@ -807,12 +807,12 @@ curl -X POST "https://redline-gateway.onrender.com/api/v1/reconcile-live" \
     <div class="callout callout-purple" style="margin-top: 5px; padding: 5px 8px;">
       <strong>Direkter Kontakt für das technische Onboarding:</strong><br>
       <strong>Allen Fletcher</strong> · Data Automation & AI Systems Specialist<br>
-      Live-System Demonstration: <a href="https://redline-gateway.onrender.com" style="color: #312783; font-weight: 700; text-decoration: none;">https://redline-gateway.onrender.com</a> · GitHub: <a href="https://github.com/AllenFletcherAI/Redline-Gateway" style="color: #312783; font-weight: 700; text-decoration: none;">AllenFletcherAI/Redline-Gateway</a>
+      Live-System Demonstration: <a href="https://oceanwide-gateway.onrender.com" style="color: #312783; font-weight: 700; text-decoration: none;">https://oceanwide-gateway.onrender.com</a> · Hamburg Seaport Gateway
     </div>
   </div>
 
   <div class="page-footer">
-    <span>RedLine Gateway v1.0 · Technische Integrationsspezifikation für Hermann Schmidt & Jens Grotebrune</span>
+    <span>Oceanwide Gateway v1.0 · Technische Integrationsspezifikation für Peter Czajkowski & Christoph Braß</span>
     <span class="footer-confidential">Vertraulich / Nur für internen Dienstgebrauch</span>
     <span>Seite 4 von 4</span>
   </div>
@@ -827,9 +827,9 @@ def main():
     print("=== Generating Asset 4: Technical Integration Specification PDF ===")
     html_content = build_html()
     
-    project_root = r"c:\Users\admin\Documents\RedLine Gateway"
+    project_root = r"c:\Users\admin\Documents\Ole Gateway"
     static_dir = os.path.join(project_root, "app", "static")
-    artifact_dir = r"C:\Users\admin\.gemini\antigravity\brain\3a957243-4bd2-43a3-94ce-13856e152903"
+    artifact_dir = r"C:\Users\admin\.gemini\antigravity\brain\8ff339e0-8951-4123-b7ee-03005334c241"
     
     out_root = os.path.join(project_root, "Technical Integration Spec.pdf")
     out_static = os.path.join(static_dir, "Technical Integration Spec.pdf")

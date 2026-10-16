@@ -10,14 +10,14 @@ def generate_mssql_ddl() -> str:
     Returns the exact T-SQL table definition script for MS-SQL Server.
     """
     return """-- ==========================================================
--- RedLine Gateway -> mw1 myscm Staging Schema
+-- Oceanwide Gateway -> OLE Enterprise TMS Staging Schema
 -- Author: Allen Fletcher (Data Automation Specialist)
--- Target System: Microsoft SQL Server 2019/2022 (mw1 ERP)
+-- Target System: Microsoft SQL Server 2019/2022 (OLE TMS Staging)
 -- ==========================================================
 
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'myscm_Staging_Shipments')
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'OLE_Staging_Shipments')
 BEGIN
-    CREATE TABLE [dbo].[myscm_Staging_Shipments] (
+    CREATE TABLE [dbo].[OLE_Staging_Shipments] (
         [StagingID] INT IDENTITY(1,1) PRIMARY KEY,
         [ShipmentRef] NVARCHAR(50) NOT NULL,
         [ContainerNumber] NVARCHAR(11) NULL,
@@ -38,8 +38,8 @@ BEGIN
         [IngestedAtUtc] DATETIME2 DEFAULT SYSUTCDATETIME()
     );
 
-    CREATE INDEX IX_Staging_Container ON [dbo].[myscm_Staging_Shipments] ([ContainerNumber]);
-    CREATE INDEX IX_Staging_Status ON [dbo].[myscm_Staging_Shipments] ([AuditStatus]);
+    CREATE INDEX IX_OLE_Staging_Container ON [dbo].[OLE_Staging_Shipments] ([ContainerNumber]);
+    CREATE INDEX IX_OLE_Staging_Status ON [dbo].[OLE_Staging_Shipments] ([AuditStatus]);
 END;
 """
 
@@ -68,7 +68,7 @@ def generate_mssql_insert(shipment_ref: str, doc: ExtractedDocument, audit: Audi
     if audit.status != "VERIFIED_CLEAN":
         header_comment = f"-- [QUARANTINE HOLD]: {audit.quarantine_reason or 'Audit failed'}\n"
 
-    return f"""{header_comment}INSERT INTO [dbo].[myscm_Staging_Shipments] (
+    return f"""{header_comment}INSERT INTO [dbo].[OLE_Staging_Shipments] (
     [ShipmentRef], [ContainerNumber], [SealNumber],
     [GrossWeightKg], [NetWeightKg], [TotalPackages], [PackageType],
     [InvoiceTotal], [CurrencyCode], [Incoterm],
@@ -87,15 +87,15 @@ def generate_reconcile_mssql_ddl() -> str:
     Returns the exact T-SQL table definition script for 3-Way Reconciliation Triad.
     """
     return """-- ==========================================================
--- RedLine Gateway -> mw1 myscm 3-Way Cross-Audit Schema
+-- Oceanwide Gateway -> OLE Enterprise TMS 3-Way Cross-Audit Schema
 -- Author: Allen Fletcher (Data Automation Specialist)
--- Target System: Microsoft SQL Server 2019/2022 (mw1 ERP)
+-- Target System: Microsoft SQL Server 2019/2022 (OLE TMS Staging)
 -- Compliance: German ATLAS 9.1 & ADSp 2017 (§ 50 kg Tara)
 -- ==========================================================
 
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'myscm_Reconciliation_Ledger')
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'OLE_Staging_ReconciliationTriad')
 BEGIN
-    CREATE TABLE [dbo].[myscm_Reconciliation_Ledger] (
+    CREATE TABLE [dbo].[OLE_Staging_ReconciliationTriad] (
         [AuditID] INT IDENTITY(1,1) PRIMARY KEY,
         [ShipmentRef] NVARCHAR(50) NOT NULL UNIQUE,
         [ContainerNumber] NVARCHAR(11) NULL,
@@ -111,7 +111,7 @@ BEGIN
         [ReconciledAtUtc] DATETIME2 DEFAULT SYSUTCDATETIME()
     );
 
-    CREATE TABLE [dbo].[myscm_Reconciliation_Discrepancies] (
+    CREATE TABLE [dbo].[OLE_Reconciliation_Discrepancies] (
         [DiscrepancyID] INT IDENTITY(1,1) PRIMARY KEY,
         [ShipmentRef] NVARCHAR(50) NOT NULL,
         [FieldName] NVARCHAR(100) NOT NULL,
@@ -122,9 +122,9 @@ BEGIN
         [IsMatch] BIT NOT NULL
     );
 
-    CREATE INDEX IX_Rec_ShipmentRef ON [dbo].[myscm_Reconciliation_Ledger] ([ShipmentRef]);
-    CREATE INDEX IX_Rec_Status ON [dbo].[myscm_Reconciliation_Ledger] ([OverallStatus]);
-    CREATE INDEX IX_Rec_Container ON [dbo].[myscm_Reconciliation_Ledger] ([ContainerNumber]);
+    CREATE INDEX IX_OLE_Rec_ShipmentRef ON [dbo].[OLE_Staging_ReconciliationTriad] ([ShipmentRef]);
+    CREATE INDEX IX_OLE_Rec_Status ON [dbo].[OLE_Staging_ReconciliationTriad] ([OverallStatus]);
+    CREATE INDEX IX_OLE_Rec_Container ON [dbo].[OLE_Staging_ReconciliationTriad] ([ContainerNumber]);
 END;
 """
 
@@ -134,29 +134,29 @@ def generate_csharp_snippet(api_url: str) -> str:
     """
     return f"""// ==========================================================
 // C# / ASP.NET Client Integration Snippet (.NET 8)
-// mw1 Logistikzentrum GmbH ERP Service
+// OLE Oceanwide Logistics Europe GmbH TMS Ingestion Driver
 // ==========================================================
 using System.Net.Http.Json;
 
-public class RedLineGatewayClient
+public class OceanwideGatewayClient
 {{
     private readonly HttpClient _client;
 
-    public RedLineGatewayClient(HttpClient client)
+    public OceanwideGatewayClient(HttpClient client)
     {{
         _client = client;
         _client.BaseAddress = new Uri("{api_url}");
     }}
 
     // 1. Single Document Ingestion (Vision OCR + Deterministic Audit)
-    public async Task<RedLineStagingResponse> IngestDocumentAsync(byte[] fileBytes, string fileName)
+    public async Task<OceanwideStagingResponse> IngestDocumentAsync(byte[] fileBytes, string fileName)
     {{
         using var content = new MultipartFormDataContent();
         content.Add(new ByteArrayContent(fileBytes), "file", fileName);
 
         var response = await _client.PostAsync("/api/v1/documents/process", content);
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<RedLineStagingResponse>();
+        return await response.Content.ReadFromJsonAsync<OceanwideStagingResponse>();
     }}
 
     // 2. 3-Way Dossier Cross-Reconciliation (B/L + Invoice + Packing List)
@@ -181,7 +181,7 @@ def generate_curl_snippet(api_url: str) -> str:
     Provides standard cURL terminal snippets.
     """
     return f"""# ==========================================================
-# RedLine Gateway CLI / Terminal Ingestion (cURL)
+# Oceanwide Gateway CLI / Seaport Terminal Ingestion (cURL)
 # ==========================================================
 
 # 1. Single Freight Document Process (Waybill, Invoice, or Packing List)
@@ -206,7 +206,7 @@ def generate_python_snippet(api_url: str) -> str:
     """
     return f"""# ==========================================================
 # Python Integration Snippet (Requests / Celery Queue Worker)
-# mw1 Automated Dispatching Integration
+# OLE Oceanwide Automated Dispatching Integration
 # ==========================================================
 import requests
 
@@ -246,14 +246,14 @@ def generate_webhook_snippet() -> str:
     """
     return """// ==========================================================
 // Webhook Event Stream Notification Schemas
-// Dispatched on Pipeline Completion to mw1 myscm ERP
+// Dispatched on Pipeline Completion to OLE Enterprise TMS
 // ==========================================================
 
 // Event 1: Shipment Pre-Cleared (ATLAS 9.1 & ADSp 2017 Compliant)
 {
   "event": "shipment.customs_precleared",
   "timestamp_utc": "2026-10-13T16:25:00Z",
-  "shipment_ref": "RL-REC-8F12B9A1",
+  "shipment_ref": "OLE-REC-8F12B9A1",
   "container_number": "MNBU3147540",
   "gross_weight_kg": 18450.00,
   "net_weight_kg": 16200.00,
@@ -268,7 +268,7 @@ def generate_webhook_snippet() -> str:
 {
   "event": "shipment.quarantine_hold",
   "timestamp_utc": "2026-10-13T16:25:00Z",
-  "shipment_ref": "RL-REC-3C72A09B",
+  "shipment_ref": "OLE-REC-3C72A09B",
   "container_number": "MSCU7821940",
   "demurrage_risk_detected": true,
   "estimated_liability_eur": 1250.00,
