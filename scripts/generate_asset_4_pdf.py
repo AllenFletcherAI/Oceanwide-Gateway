@@ -16,7 +16,7 @@ def build_html() -> str:
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Oceanwide Gateway - Technical Integration Specification (Asset 4)</title>
+<title>Oceanwide Gateway - Technische Integrationsspezifikation (OLE Oceanwide Logistics Europe)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
